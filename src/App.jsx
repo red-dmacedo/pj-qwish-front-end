@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router";
 import { useState, useEffect } from "react";
 import NavBar from "./components/NavBar/NavBar";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
-import SignInForm from './components/SignUpForm/SignUpForm';
+import SignInForm from './components/SignInForm/SignInForm';
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
