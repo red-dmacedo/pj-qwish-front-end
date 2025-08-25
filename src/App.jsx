@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route, useNavigate } from "react-router";
 import { useContext, useState, useEffect } from "react";
 
 import NavBar from "./components/NavBar/NavBar";
@@ -6,6 +6,7 @@ import SignUpForm from "./components/SignUpForm/SignUpForm";
 import SignInForm from "./components/SignInForm/SignInForm";
 import QwishList from "./components/QwishList/QwishList";
 import QwishDetails from "./components/QwishDetails/QwishDetails";
+import QwishForm from './components/QwishForm/QwishForm';
 
 import { UserContext } from "./contexts/UserContext";
 
@@ -16,6 +17,14 @@ const App = () => {
   const [lists, setLists] = useState([]);
 
   const { user } = useContext(UserContext);
+
+  const navigate = useNavigate();
+
+  const handleAddList = async(listFormData) => {
+    const newList = await qwishService.create(listFormData);
+    setLists([newList, ...lists]);
+    navigate('/lists');
+  }
 
   function handleLogOut() {
     setAuthenticated(false);
@@ -34,23 +43,45 @@ const App = () => {
     if (user) fetchAllLists();
   }, [user]);
 
+  const handleDeleteList = async (listId) => {
+    const deletedList = await qwishService.deleteList(listId);
+    setLists(lists.filter((list) => list._id !== deletedList._id));
+    navigate('/lists');
+  }
+
+  const handleUpdateList = async (listId, listFormData) => {
+    const updatedList = await qwishService.update(listId, listFormData);
+    setLists(lists.map((list) => (listId === list._id ? updatedList : list)));
+    navigate(`/lists/${listId}`);
+  }
+
   return (
     <>
-      <h1>hello</h1>
       <NavBar authenticated={authenticated} handleLogOut={handleLogOut} />
-      <Routes>
-        <Route index element={<Home />} />
-
-        <Route
-          path="sign-in"
-          element={<SignInForm setAuthenticated={setAuthenticated} />}
-        />
-        <Route
-          path="sign-up"
-          element={<SignUpForm setAuthenticated={setAuthenticated} />}
-        />
-        <Route path="/lists" element={<QwishList lists={lists} />} />
-        <Route path="/lists/:listId" element={<QwishDetails />} />
+<Routes>
+        <Route path="/" element={user ? <Dashboard /> : <Landing />} />
+        {user ? (
+          <>
+            <Route path="/lists" element={<QwishList lists={lists} />} />
+            <Route
+              path="/lists/:listId"
+              element={<QwishDetails handleDeleteList={handleDeleteList} />}
+            />
+            <Route
+              path="/lists/new"
+              element={<QwishForm handleAddList={handleAddList} />}
+            />
+            <Route
+              path="lists/:listId/edit"
+              element={<QwishForm handleUpdateList={handleUpdateList} />}
+            />
+          </>
+        ) : (
+          <>
+            <Route path="/sign-up" element={<SignUpForm />} />
+            <Route path="/sign-in" element={<SignInForm />} />
+          </>
+        )}
       </Routes>
     </>
   );
