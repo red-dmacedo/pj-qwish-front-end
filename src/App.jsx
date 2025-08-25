@@ -17,16 +17,15 @@ const App = () => {
     //we need to clear lists, tokens
   }
 
-  useEffect(() => {
-    if (authenticated) {
-      getLists().then(setLists);
-    } else {
-      const token = localStorage.getItem("token");
-      if (token) {
-        setAuthenticated(token);
-      }
-    }
-  }, [authenticated]);
+useEffect(() => {
+  const fetchAllLists = async () => {
+    const listsData = await listService.index();
+
+    setLists(listsData);
+  };
+
+  if (user) fetchAllLists();
+}, [user]);
 
   return (
     <>
