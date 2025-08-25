@@ -9,11 +9,14 @@ import NewList from "./components/pages/NewList";
 import ListItem from "./components/pages/ListItem";
 import Tools from "./components/pages/Tools";
 import { getLists } from "./api/controller";
+import * as itemService from './services/itemService';
+import ItemList from "./components/ItemList/ItemList";
 import ItemDetails from "./components/ItemDetail/ItemDetail";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [lists, setLists] = useState([])
+  const [items, setItems] = useState([]);
 
   function handleLogOut() {
     setAuthenticated(false);
@@ -23,6 +26,12 @@ const App = () => {
   }
 
   useEffect(()=>{
+    const fetchAllItems = async () => {
+      const itemDAta = await itemService.index();
+    }
+
+    if(authenticated) fetchAllItems();
+
     if(authenticated){
       getLists().then(setLists)
     }else{
@@ -45,6 +54,7 @@ const App = () => {
         <Route path="lists/new-list" element={<NewList />} />
         <Route path="lists/:id" element={<ListItem />} />
         <Route path="tools" element={<Tools />} />
+        <Route path="/items" element={<ItemList items={items}/>} />
         <Route path="/items/:itemId" element={<ItemDetails />} />
       </Routes>
     </>
