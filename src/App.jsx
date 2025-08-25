@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar/NavBar";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import SignInForm from './components/SignInForm/SignInForm';
 import QwishList from './components/QwishList/QwishList';
+import Users from './components/Users/Users';
 
 import { UserContext } from "./contexts/UserContext";
 
@@ -48,6 +49,7 @@ useEffect(() => {
           element={<SignUpForm setAuthenticated={setAuthenticated} />}
         />
         <Route path="/lists" element={<QwishList lists={lists} />} />
+        <Route path="users" element={<Users />}></Route>
       </Routes>
     </>
   );
