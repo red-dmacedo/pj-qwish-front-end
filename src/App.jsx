@@ -1,14 +1,20 @@
 import { Routes, Route } from "react-router";
-import { useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 
 import NavBar from "./components/NavBar/NavBar";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import SignInForm from './components/SignInForm/SignInForm';
 import QwishList from './components/QwishList/QwishList';
 
+import { UserContext } from "./contexts/UserContext";
+
+import * as qwishService from './services/qwishService';
+
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [lists, setLists] = useState([]);
+
+  const { user } = useContext(UserContext);
 
   function handleLogOut() {
     setAuthenticated(false);
@@ -19,7 +25,7 @@ const App = () => {
 
 useEffect(() => {
   const fetchAllLists = async () => {
-    const listsData = await listService.index();
+    const listsData = await qwishService.index();
 
     setLists(listsData);
   };
@@ -42,10 +48,6 @@ useEffect(() => {
           element={<SignUpForm setAuthenticated={setAuthenticated} />}
         />
         <Route path="/lists" element={<QwishList lists={lists} />} />
-        <Route path="lists/new-list" element={<NewList />} />
-        <Route path="lists/:id" element={<ListItem />} />
-        <Route path="tools" element={<Tools />} />
-        <Route path="/items/:itemId" element={<ItemDetails />} />
       </Routes>
     </>
   );
