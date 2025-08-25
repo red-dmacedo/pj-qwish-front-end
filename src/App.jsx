@@ -31,6 +31,24 @@ const App = () => {
     navigate('/lists');
   }
 
+  const handleAddItem = async (itemFormData) => {
+    const newList = await itemService.create(itemFormData);
+    setItems([newItem, ...items]);
+    navigate('/items');
+  }
+
+  const handleDeleteItem = async (itemId) => {
+    const deletedItem = await itemService.deleteItem(itemId);
+    setItems(items.filter((item) => item._id !== deletedItem._id));
+    navigate('/items');
+  }
+
+  const handleUpdateItem = async (itemId, itemFormData) => {
+    const updatedItem = await itemService.update(itemId, itemFormData);
+    setItems(items.map((item) => (itemId === item._id ? updatedItem : item)));
+    navigate(`/items/${itemId}`);
+  }
+
   function handleLogOut() {
     setAuthenticated(false);
     setLists([]);
@@ -46,11 +64,12 @@ const App = () => {
     };
 
     const fetchAllItems = async () => {
-      const itemDAta = await itemService.index();
+      const itemData = await itemService.index();
+
+      setItems(itemData);
     };
 
-    if (user) fetchAllItems();
-    if (user) fetchAllLists();
+    if (user) fetchAllItems(), fetchAllLists();
   }, [user]);
 
   const handleDeleteList = async (listId) => {
@@ -86,9 +105,9 @@ const App = () => {
               element={<QwishForm handleUpdateList={handleUpdateList} />}
             />
             <Route path="/items" element={<ItemList items={items} />} />
-            <Route path="/items/:itemId" element={<ItemDetails />} />
-            <Route path="/items/:itemId/edit" element={<ItemForm />} />
-
+            <Route path="/items/new" element={<ItemForm handleAddItem={handleAddItem} />} />
+            <Route path="/items/:itemId/edit" element={<ItemForm handleUpdateItem={handleUpdateItem} />} />
+            <Route path="/items/:itemId" element={<ItemDetails handleDeleteItem={handleDeleteItem} />} />
           </>
         ) : (
           <>

@@ -1,7 +1,6 @@
+// import {Link} from 'react-router'
 
-import {Link} from 'react-router'
-
-const ItemList = () => {
+const ItemList = (props) => {
   return (
     <main>
       {props.items.map((item) => (
@@ -9,7 +8,7 @@ const ItemList = () => {
       )
     )}
     </main>
-  ) 
+  )
 };
 
 export default ItemList;
