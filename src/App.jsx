@@ -35,6 +35,7 @@ useEffect(() => {
 
   return (
     <>
+    <h1>hello</h1>
       <NavBar authenticated={authenticated} handleLogOut={handleLogOut} />
       <Routes>
         <Route index element={<Home />} />
