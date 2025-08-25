@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router";
 import { useState, useEffect } from "react";
+
 import NavBar from "./components/NavBar/NavBar";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import SignInForm from './components/SignInForm/SignInForm';
@@ -45,6 +46,7 @@ const App = () => {
         <Route path="lists/new-list" element={<NewList />} />
         <Route path="lists/:id" element={<ListItem />} />
         <Route path="tools" element={<Tools />} />
+        <Route path="/items/:itemId" element={<ItemDetails />} />
       </Routes>
     </>
   );
