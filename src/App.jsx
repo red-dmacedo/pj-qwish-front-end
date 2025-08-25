@@ -9,6 +9,7 @@ import NewList from "./components/pages/NewList";
 import ListItem from "./components/pages/ListItem";
 import Tools from "./components/pages/Tools";
 import { getLists } from "./api/controller";
+import ItemDetails from "./components/ItemDetail/ItemDetail";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -44,6 +45,7 @@ const App = () => {
         <Route path="lists/new-list" element={<NewList />} />
         <Route path="lists/:id" element={<ListItem />} />
         <Route path="tools" element={<Tools />} />
+        <Route path="/items/:itemId" element={<ItemDetails />} />
       </Routes>
     </>
   );
