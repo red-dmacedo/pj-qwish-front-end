@@ -9,6 +9,7 @@ import NewList from "./components/SignInForm/NewList";
 import ListItem from "./components/SignInForm/ListItem";
 import Tools from "./components/SignInForm/Tools";
 import { getLists } from "./api/controller";
+import ItemDetails from "./components/ItemDetail/ItemDetail";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -50,6 +51,7 @@ const App = () => {
         <Route path="lists/new-list" element={<NewList />} />
         <Route path="lists/:id" element={<ListItem />} />
         <Route path="tools" element={<Tools />} />
+        <Route path="/items/:itemId" element={<ItemDetails />} />
       </Routes>
     </>
   );
