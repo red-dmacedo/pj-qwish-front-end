@@ -1,13 +1,13 @@
 import { useContext } from 'react';
 import { Link } from 'react-router';
 
-import { userContext } from '../../userContext';
+import { userContext } from '../../contexts/UserContext';
 
 const NavBar = () => {
     const { user, setUser } = useContext(userContext);
 
     const handleSignOut = () => {
-        localStorageStorage.removeItem('token');
+        localStorage.removeItem('token');
         setUser(null);
     };
 
