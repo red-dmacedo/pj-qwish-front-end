@@ -7,6 +7,9 @@ import SignInForm from "./components/SignInForm/SignInForm";
 import QwishList from "./components/QwishList/QwishList";
 import QwishDetails from "./components/QwishDetails/QwishDetails";
 import QwishForm from './components/QwishForm/QwishForm';
+import * as itemService from './services/itemService';
+import ItemList from "./components/ItemList/ItemList";
+import ItemDetails from "./components/ItemDetail/ItemDetail";
 
 import { UserContext } from "./contexts/UserContext";
 
@@ -15,12 +18,13 @@ import * as qwishService from "./services/qwishService";
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [lists, setLists] = useState([]);
+  const [items, setItems] = useState([]);
 
   const { user } = useContext(UserContext);
 
   const navigate = useNavigate();
 
-  const handleAddList = async(listFormData) => {
+  const handleAddList = async (listFormData) => {
     const newList = await qwishService.create(listFormData);
     setLists([newList, ...lists]);
     navigate('/lists');
@@ -40,6 +44,11 @@ const App = () => {
       setLists(listsData);
     };
 
+    const fetchAllItems = async () => {
+      const itemDAta = await itemService.index();
+    };
+
+    if (user) fetchAllItems();
     if (user) fetchAllLists();
   }, [user]);
 
@@ -58,7 +67,7 @@ const App = () => {
   return (
     <>
       <NavBar authenticated={authenticated} handleLogOut={handleLogOut} />
-<Routes>
+      <Routes>
         <Route path="/" element={user ? <Dashboard /> : <Landing />} />
         {user ? (
           <>
@@ -75,6 +84,9 @@ const App = () => {
               path="lists/:listId/edit"
               element={<QwishForm handleUpdateList={handleUpdateList} />}
             />
+            <Route path="/items" element={<ItemList items={items} />} />
+            <Route path="/items/:itemId" element={<ItemDetails />} />
+
           </>
         ) : (
           <>
