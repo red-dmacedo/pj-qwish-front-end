@@ -7,13 +7,14 @@ import SignInForm from "./components/SignInForm/SignInForm";
 import QwishList from "./components/QwishList/QwishList";
 import QwishDetails from "./components/QwishDetails/QwishDetails";
 import QwishForm from './components/QwishForm/QwishForm';
-import * as itemService from './services/itemService';
 import ItemList from "./components/ItemList/ItemList";
 import ItemDetails from "./components/ItemDetail/ItemDetail";
+import ItemForm from "./components/ItemForm/ItemForm";
 
 import { UserContext } from "./contexts/UserContext";
 
 import * as qwishService from "./services/qwishService";
+import * as itemService from './services/itemService';
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -86,6 +87,7 @@ const App = () => {
             />
             <Route path="/items" element={<ItemList items={items} />} />
             <Route path="/items/:itemId" element={<ItemDetails />} />
+            <Route path="/items/:itemId/edit" element={<ItemForm />} />
 
           </>
         ) : (
