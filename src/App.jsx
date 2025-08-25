@@ -1,55 +1,18 @@
-import { Routes, Route } from "react-router";
-import { useState, useEffect } from "react";
-import Home from "./components/SignInForm/Home";
-import Nav from "./components/Nav";
-import SignIn from "./components/SignInForm/SignInForm/SignInForm";
-import SignUp from "./components/SignInForm/SignUpForm";
-import Lists from "./components/SignInForm/Lists";
-import NewList from "./components/SignInForm/NewList";
-import ListItem from "./components/SignInForm/ListItem";
-import Tools from "./components/SignInForm/Tools";
-import { getLists } from "./api/controller";
+import { useContext, useEffect, useState } from 'react';
+import { Routes, Route, useNavigate } from 'react-router';
+import SignUpForm from './components/SignUpForm/SignUpForm';
+import SignInForm from './components/SignInForm/SignInForm';
 
 const App = () => {
-  const [authenticated, setAuthenticated] = useState(false);
-  const [lists, setLists] = useState([]);
 
-  function handleLogOut() {
-    setAuthenticated(false);
-    setLists([]);
-    localStorage.removeItem("token");
-    //we need to clear lists, tokens
-  }
-
-  useEffect(() => {
-    if (authenticated) {
-      getLists().then(setLists);
-    } else {
-      const token = localStorage.getItem("token");
-      if (token) {
-        setAuthenticated(token);
-      }
-    }
-  }, [authenticated]);
+const { user } = useContext(UserContext);
 
   return (
     <>
-      <Nav authenticated={authenticated} handleLogOut={handleLogOut} />
+      <NavBar />
       <Routes>
-        <Route index element={<Home />} />
-
-        <Route
-          path="sign-in"
-          element={<SignIn setAuthenticated={setAuthenticated} />}
-        />
-        <Route
-          path="sign-up"
-          element={<SignUp setAuthenticated={setAuthenticated} />}
-        />
-        <Route path="lists" element={<Lists lists={lists} />} />
-        <Route path="lists/new-list" element={<NewList />} />
-        <Route path="lists/:id" element={<ListItem />} />
-        <Route path="tools" element={<Tools />} />
+        <Route path='/sign-up' element={<SignUpForm />} />
+        <Route path="/sign-in" element={<SignInForm />} />
       </Routes>
     </>
   );
