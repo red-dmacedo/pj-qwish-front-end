@@ -12,7 +12,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+nav{
+  display: flex;
+  gap:20px;
+  justify-content: flex-end;
+  width:100%;
+}
 a {
   font-weight: 500;
   color: #646cff;
@@ -26,8 +31,6 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {
@@ -65,4 +68,13 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+table{
+  th,td{
+    border: 1px solid white;
+    width: 500px;
+  }
+  border-collapse: collapse;
 }
