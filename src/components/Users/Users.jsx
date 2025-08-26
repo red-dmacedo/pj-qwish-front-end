@@ -5,7 +5,8 @@ import { UserContext } from '../../contexts/UserContext';
 const Users = (props) => {
   const { newFriend, setNewFriend } = useState('');
   const { user } = useContext(UserContext);
-  const { allUsers, setAllUsers } = useState(props.users);
+  const sortedUsers = props.users.toSorted((a, b)=> a.name.localeCompare(b.name));
+  const { filteredUsers, setFilteredUsers } = useState(sortedUsers);
 
   const handleSubmit = (evt) => {
     evt.preventDefault;
@@ -18,7 +19,8 @@ const Users = (props) => {
     const match = (str1, str2) => {
       return (str1.toLowerCase().includes(str2.toLowerCase())) ? true : false;
     };
-    const filteredUsers = props.users.filter(el => match(el.name, evt.target.value) || match(evt.target.value, el.name));
+    const curUsers = sortedUsers.filter(el => match(el.name, evt.target.value) || match(evt.target.value, el.name));
+    setFilteredUsers(curUsers);
   };
 
   return (
@@ -26,7 +28,7 @@ const Users = (props) => {
       <input type="text" placeholder='Search Users' onChange={handleSearch}/>
       <form onSubmit={handleSubmit}>
         <select>
-          {props.users.map((usr, idx) => (
+          {filteredUsers.map((usr, idx) => (
             <option key={idx} value={usr._id}>{usr.name}</option>
           ))}
         </select>
