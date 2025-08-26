@@ -14,12 +14,15 @@ const index = async () => {
 
 const create = async(listFormData)=> {
   try{
-    const res = await fetch(`${BASE_URL}/${listId}`, {
+    const res = await fetch(BASE_URL, {
       method: 'POST',
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(listFormData),
     });
-    return await res.json();
+    return res.json();
   } catch(err){
     console.log(err);
     throw new Error(err);
@@ -29,7 +32,9 @@ const create = async(listFormData)=> {
 const show = async(listId)=> {
   try{
     const res = await fetch(`${BASE_URL}/${listId}`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
     });
     return await res.json();
   } catch(err){
@@ -42,7 +47,10 @@ const update = async(listId, listFormData)=> {
   try{
     const res = await fetch(`${BASE_URL}/${listId}`, {
       method: 'PUT',
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(listFormData),
     });
     return await res.json();
@@ -56,7 +64,9 @@ const remove = async(listId)=> {
   try{
     const res = await fetch(`${BASE_URL}/${listId}`, {
       method: 'DELETE',
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
     });
     return await res.json();
   } catch(err){
