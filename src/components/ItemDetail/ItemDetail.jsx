@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router';
 
 const ItemDetail = () => {
   const [item, setItem] = useState(null);
-  const { itemId } = useParams();
   const navigate = useNavigate();
+  const {itemId} = useParams
 
   useEffect(() => {
     const fetchItem = async () => {
