@@ -4,6 +4,8 @@ import { useContext, useState, useEffect } from "react";
 import NavBar from "./components/NavBar/NavBar";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import SignInForm from "./components/SignInForm/SignInForm";
+import Dashboard from './components/Dashboard/Dashboard';
+import Landing from './components/Landing/Landing';
 import QwishList from "./components/QwishList/QwishList";
 import QwishDetails from "./components/QwishDetails/QwishDetails";
 import QwishForm from "./components/QwishForm/QwishForm";
