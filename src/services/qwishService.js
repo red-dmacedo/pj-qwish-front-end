@@ -14,7 +14,7 @@ const index = async () => {
 
 const create = async(listFormData)=> {
   try{
-    const res = await fetch(`${BASE_URL}/${listId}`, {
+    const res = await fetch(BASE_URL, {
       method: 'POST',
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       body: JSON.stringify(listFormData),
