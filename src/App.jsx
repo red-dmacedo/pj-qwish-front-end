@@ -6,7 +6,7 @@ import SignUpForm from "./components/SignUpForm/SignUpForm";
 import SignInForm from "./components/SignInForm/SignInForm";
 import QwishList from "./components/QwishList/QwishList";
 import QwishDetails from "./components/QwishDetails/QwishDetails";
-import QwishForm from './components/QwishForm/QwishForm';
+import QwishForm from "./components/QwishForm/QwishForm";
 import ItemList from "./components/ItemList/ItemList";
 import ItemDetails from "./components/ItemDetail/ItemDetail";
 import ItemForm from "./components/ItemForm/ItemForm";
@@ -14,7 +14,7 @@ import ItemForm from "./components/ItemForm/ItemForm";
 import { UserContext } from "./contexts/UserContext";
 
 import * as qwishService from "./services/qwishService";
-import * as itemService from './services/itemService';
+import * as itemService from "./services/itemService";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -32,7 +32,7 @@ const App = () => {
   }
 
   const handleAddItem = async (itemFormData) => {
-    const newList = await itemService.create(itemFormData);
+    const newItem = await itemService.create(itemFormData);
     setItems([newItem, ...items]);
     navigate('/items');
   }
