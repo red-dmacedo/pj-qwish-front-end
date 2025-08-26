@@ -12,7 +12,8 @@ useEffect(() => {
     fetchItem();
   }, [itemId]);
 
-if (!item) return <main>Loading...</main>;
+// if (!item) return <main>Loading...</main>;
+
 return (
   <main>
     <section>

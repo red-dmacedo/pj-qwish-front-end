@@ -1,13 +1,38 @@
-// import {Link} from 'react-router'
+import { useState, useEffect } from "react";
+import { index } from "../../services/itemService";
+import ItemDetails from "../ItemDetail/ItemDetail";
 
 const ItemList = (props) => {
-  return (
-    <main>
+  const [items, setItems] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+useEffect(() => {
+  const fetchItems = async () => {
+    try {
+      const fetchedItems = await index();
+      setItems(fetchedItems);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+  fetchItems();
+}, []);
+
+if (!items.length) return <div>No Items Yet!</div>;
+
+return (
+    <div>
+      <h1>Items</h1>
+      <ul>
       {props.items.map((item) => (
-        <p key={item._id}>{item.name}</p>
+        <li key={item.id} onClick={() => setSelectedItem(item.id)}>
+          {item.name}
+        </li>
       ))}
-    </main>
-  )
+      </ul>
+      {selectedItem && <ItemDetails itemId={selectedItem} />}
+    </div>
+  );
 };
 
 export default ItemList;
