@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const ItemDetails = () => {
   const [item, setItem] = useState(null);
-};
+
 
 useEffect(() => {
     const fetchItem = async () => {
@@ -12,7 +12,8 @@ useEffect(() => {
     fetchItem();
   }, [itemId]);
 
-if (!item) return <main>Loading...</main>;
+// if (!item) return <main>Loading...</main>;
+
 return (
   <main>
     <section>
@@ -25,7 +26,6 @@ return (
   </main>
 )
 
-
-
+};
 
 export default ItemDetails;
