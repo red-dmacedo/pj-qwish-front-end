@@ -1,15 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const ItemDetails = () => {
-  const [item, setItem] = useState();
+  const [item, setItem] = useState(null);
 };
+
+useEffect(() => {
+    const fetchItem = async () => {
+      const itemData = await itemService.show(itemId);
+      setItem(itemData);
+    };
+    fetchItem();
+  }, [itemId]);
 
 if (!item) return <main>Loading...</main>;
 return (
   <main>
     <section>
       <header>
-        <h1>{item.title}</h1>
+        <p>{item.img}</p>
+        <h2>{item.title}</h2>
+        <p>{item.details}</p>
       </header>
     </section>
   </main>

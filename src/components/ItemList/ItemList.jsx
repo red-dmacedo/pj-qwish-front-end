@@ -1,15 +1,13 @@
+// import {Link} from 'react-router'
 
-import {Link} from 'react-router'
-
-const ItemList = () => {
+const ItemList = (props) => {
   return (
     <main>
       {props.items.map((item) => (
-        <p key={item._id}>{item.title}</p>
-      )
-    )}
+        <p key={item._id}>{item.name}</p>
+      ))}
     </main>
-  ) 
+  )
 };
 
 export default ItemList;
