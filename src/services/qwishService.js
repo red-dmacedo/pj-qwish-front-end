@@ -2,7 +2,7 @@ const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/lists`;
 
 const index = async () => {
   try{
-    const res = fetch(BASE_URL, {
+    const res = await fetch(BASE_URL, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
     return await res.json();
@@ -14,7 +14,7 @@ const index = async () => {
 
 const create = async(listFormData)=> {
   try{
-    const res = fetch(`${BASE_URL}/${listId}`, {
+    const res = await fetch(`${BASE_URL}/${listId}`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       body: JSON.stringify(listFormData),
@@ -28,7 +28,7 @@ const create = async(listFormData)=> {
 
 const show = async(listId)=> {
   try{
-    const res = fetch(`${BASE_URL}/${listId}`, {
+    const res = await fetch(`${BASE_URL}/${listId}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
     return await res.json();
@@ -40,7 +40,7 @@ const show = async(listId)=> {
 
 const update = async(listId, listFormData)=> {
   try{
-    const res = fetch(`${BASE_URL}/${listId}`, {
+    const res = await fetch(`${BASE_URL}/${listId}`, {
       method: 'PUT',
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       body: JSON.stringify(listFormData),
@@ -54,7 +54,7 @@ const update = async(listId, listFormData)=> {
 
 const remove = async(listId)=> {
   try{
-    const res = fetch(`${BASE_URL}/${listId}`, {
+    const res = await fetch(`${BASE_URL}/${listId}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
