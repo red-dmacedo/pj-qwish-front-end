@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const ItemDetails = () => {
   const [item, setItem] = useState(null);
-};
+
 
 useEffect(() => {
     const fetchItem = async () => {
@@ -26,7 +26,6 @@ return (
   </main>
 )
 
-
-
+};
 
 export default ItemDetails;
