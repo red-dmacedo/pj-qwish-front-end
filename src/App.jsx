@@ -1,19 +1,53 @@
-import { Routes, Route } from "react-router";
-import { useState, useEffect } from "react";
-import Home from "./components/SignInForm/Home";
-import Nav from "./components/Nav";
-import SignIn from "./components/SignInForm/SignInForm/SignInForm";
-import SignUp from "./components/SignInForm/SignUpForm";
-import Lists from "./components/SignInForm/Lists";
-import NewList from "./components/SignInForm/NewList";
-import ListItem from "./components/SignInForm/ListItem";
-import Tools from "./components/SignInForm/Tools";
-import { getLists } from "./api/controller";
+import { Routes, Route, useNavigate } from "react-router";
+import { useContext, useState, useEffect } from "react";
+
+import NavBar from "./components/NavBar/NavBar";
+import SignUpForm from "./components/SignUpForm/SignUpForm";
+import SignInForm from "./components/SignInForm/SignInForm";
+import QwishList from "./components/QwishList/QwishList";
+import QwishDetails from "./components/QwishDetails/QwishDetails";
+import QwishForm from "./components/QwishForm/QwishForm";
+import ItemList from "./components/ItemList/ItemList";
 import ItemDetails from "./components/ItemDetail/ItemDetail";
+import ItemForm from "./components/ItemForm/ItemForm";
+
+import { UserContext } from "./contexts/UserContext";
+
+import * as qwishService from "./services/qwishService";
+import * as itemService from "./services/itemService";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [lists, setLists] = useState([]);
+  const [items, setItems] = useState([]);
+
+  const { user } = useContext(UserContext);
+
+  const navigate = useNavigate();
+
+  const handleAddList = async (listFormData) => {
+    const newList = await qwishService.create(listFormData);
+    setLists([newList, ...lists]);
+    navigate('/lists');
+  }
+
+  const handleAddItem = async (itemFormData) => {
+    const newItem = await itemService.create(itemFormData);
+    setItems([newItem, ...items]);
+    navigate('/items');
+  }
+
+  const handleDeleteItem = async (itemId) => {
+    const deletedItem = await itemService.deleteItem(itemId);
+    setItems(items.filter((item) => item._id !== deletedItem._id));
+    navigate('/items');
+  }
+
+  const handleUpdateItem = async (itemId, itemFormData) => {
+    const updatedItem = await itemService.update(itemId, itemFormData);
+    setItems(items.map((item) => (itemId === item._id ? updatedItem : item)));
+    navigate(`/items/${itemId}`);
+  }
 
   function handleLogOut() {
     setAuthenticated(false);
@@ -23,35 +57,64 @@ const App = () => {
   }
 
   useEffect(() => {
-    if (authenticated) {
-      getLists().then(setLists);
-    } else {
-      const token = localStorage.getItem("token");
-      if (token) {
-        setAuthenticated(token);
-      }
-    }
-  }, [authenticated]);
+    const fetchAllLists = async () => {
+      const listsData = await qwishService.index();
+
+      setLists(listsData);
+    };
+
+    const fetchAllItems = async () => {
+      const itemData = await itemService.index();
+
+      setItems(itemData);
+    };
+
+    if (user) fetchAllItems(), fetchAllLists();
+  }, [user]);
+
+  const handleDeleteList = async (listId) => {
+    const deletedList = await qwishService.deleteList(listId);
+    setLists(lists.filter((list) => list._id !== deletedList._id));
+    navigate('/lists');
+  }
+
+  const handleUpdateList = async (listId, listFormData) => {
+    const updatedList = await qwishService.update(listId, listFormData);
+    setLists(lists.map((list) => (listId === list._id ? updatedList : list)));
+    navigate(`/lists/${listId}`);
+  }
 
   return (
     <>
-      <Nav authenticated={authenticated} handleLogOut={handleLogOut} />
+      <NavBar authenticated={authenticated} handleLogOut={handleLogOut} />
       <Routes>
-        <Route index element={<Home />} />
-
-        <Route
-          path="sign-in"
-          element={<SignIn setAuthenticated={setAuthenticated} />}
-        />
-        <Route
-          path="sign-up"
-          element={<SignUp setAuthenticated={setAuthenticated} />}
-        />
-        <Route path="lists" element={<Lists lists={lists} />} />
-        <Route path="lists/new-list" element={<NewList />} />
-        <Route path="lists/:id" element={<ListItem />} />
-        <Route path="tools" element={<Tools />} />
-        <Route path="/items/:itemId" element={<ItemDetails />} />
+        <Route path="/" element={user ? <Dashboard /> : <Landing />} />
+        {user ? (
+          <>
+            <Route path="/lists" element={<QwishList lists={lists} />} />
+            <Route
+              path="/lists/:listId"
+              element={<QwishDetails handleDeleteList={handleDeleteList} />}
+            />
+            <Route
+              path="/lists/new"
+              element={<QwishForm handleAddList={handleAddList} />}
+            />
+            <Route
+              path="lists/:listId/edit"
+              element={<QwishForm handleUpdateList={handleUpdateList} />}
+            />
+            <Route path="/items" element={<ItemList items={items} />} />
+            <Route path="/items/new" element={<ItemForm handleAddItem={handleAddItem} />} />
+            <Route path="/items/:itemId/edit" element={<ItemForm handleUpdateItem={handleUpdateItem} />} />
+            <Route path="/items/:itemId" element={<ItemDetails handleDeleteItem={handleDeleteItem} />} />
+          </>
+        ) : (
+          <>
+            <Route path="/sign-up" element={<SignUpForm />} />
+            <Route path="/sign-in" element={<SignInForm />} />
+          </>
+        )}
       </Routes>
     </>
   );
