@@ -22,7 +22,7 @@ const create = async(listFormData)=> {
       },
       body: JSON.stringify(listFormData),
     });
-    return await res.json();
+    return res.json();
   } catch(err){
     console.log(err);
     throw new Error(err);

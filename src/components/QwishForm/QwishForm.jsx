@@ -13,7 +13,7 @@ const QwishForm = (props) => {
         };
         if (listId) fetchList();
 
-        return () => setFormData({ });
+        return () => setFormData({ name: '', description: '', closeDate: (new Date()).toLocaleDateString('en-CA')});
     }, [listId]);
 
     const [formData, setFormData] = useState({
@@ -41,8 +41,8 @@ const QwishForm = (props) => {
             <form onSubmit={handleSubmit}>
                 <label htmlFor="">Event Name</label>
                 <input required type="text"
-                name="eventName"
-                value={formData.eventName}
+                name="name"
+                value={formData.name}
                 onChange={handleChange} />
                 <label htmlFor="">Event Description</label>
                 <input type="text"
@@ -51,8 +51,8 @@ const QwishForm = (props) => {
                 onChange={handleChange} />
                 <label htmlFor="">List Closing Date</label>
                 <input type="date"
-                name="date"
-                value={formData.date}
+                name="closeDate"
+                value={formData.closeDate}
                 onChange={handleChange} />
                 <button>Submit</button>
             </form>
