@@ -6,12 +6,9 @@ import { search as walmartSearch } from "../../services/walmartService";
 const ItemForm = ({ existingItem, addItem }) => {
   const [name, setName] = useState(existingItem?.name || null);
   const [img, setImg] = useState(existingItem?.img || null);
-  const [description, setDescription] = useState(
-    existingItem?.description || null
-  );
+  const [description, setDescription] = useState(existingItem?.description || null);
   const [price, setPrice] = useState(existingItem?.price || null);
   const [quantity, setQuantity] = useState(existingItem?.quantity || null);
-
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
@@ -33,10 +30,10 @@ const ItemForm = ({ existingItem, addItem }) => {
     } else {
       const createdItem = await itemService.create(itemData);
       addItem(createdItem);
+      navigate("/items");
     }
-
-    navigate("/items");
   };
+  
   function showSuggestions() {
     walmartSearch(search).then((e) => setSearchResults(e.organic_results));
   }
