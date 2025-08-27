@@ -1,12 +1,42 @@
-# React + Vite
+# Qwish, the wishlist maker app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Qwish is a simple and intuitive app that helps you create and manage wishlists for any occasion. It makes gift giving and receiving effortless by letting you share your wishlist with friends and family. With Qwish, everyone can know exactly what you want, eliminating the guesswork and avoiding awkward gifts. No more time guessing or returning gifts! Make every gift meaningful with ease.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Deployed Project](https://qwish.netlify.app/)
 
-## Expanding the ESLint configuration
+Try out Qwish here!
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+[Trello Board](https://trello.com/invite/b/68a7677bb3b382d6d1cf4db7/ATTIb4fdfa3cc22c8696876bc8923acf82c7E8E72A63/qwish)
+
+Take a look at our planning process through our user stories, schemas, and wireframes.
+
+[Github Back End Repo](https://github.com/red-dmacedo/pj-qwish-back-end)
+
+Here is a link to our back end repo on Github.
+
+[Github Front End Repo](https://github.com/red-dmacedo/pj-qwish-front-end)
+
+Here is a link to our front end repo on Github.
+
+## Attributions
+
+Walmart API
+
+(fill out more info about this API)
+
+## Technologies Used
+
+* React
+* Vite
+* Javascript
+* ESlint
+* MongoDB
+* CSS
+* Heroku back end deployment
+* Netlify front end deployment
+
+## Next Steps
+
+(fill out later)
