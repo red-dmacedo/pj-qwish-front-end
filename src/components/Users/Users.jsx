@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { UserContext } from '../../contexts/UserContext';
-import styles from "/styles/Users.module.scss";
+import styles from "../../../public/styles/Users.module.scss";
 
 const Users = (props) => {
   const { user } = useContext(UserContext);

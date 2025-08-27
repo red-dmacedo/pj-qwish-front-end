@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import styles from "/styles/QwishList.module.scss";
+import styles from "../../../public/styles/QwishList.module.scss";
 
 const QwishList = (props) => {
   return (
