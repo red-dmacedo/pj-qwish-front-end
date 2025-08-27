@@ -57,7 +57,7 @@ const ItemForm = ({ existingItem }) => {
     <section style={{ display: "flex", gap: "90px" }}>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Name: </label>
+          <label>Name:</label>
           <input
             type="text"
             value={name || ""}
@@ -66,7 +66,7 @@ const ItemForm = ({ existingItem }) => {
           />
         </div>
         <div>
-          <label>Image URL: </label>
+          <label>Image URL:</label>
           <input
             type="text"
             value={img || ""}
@@ -74,14 +74,14 @@ const ItemForm = ({ existingItem }) => {
           />
         </div>
         <div>
-          <label>Description: </label>
+          <label>Description:</label>
           <textarea
             value={description || ""}
             onChange={(e) => setDescription(e.target.value || null)}
           />
         </div>
         <div>
-          <label>Price: </label>
+          <label>Price:</label>
           <input
             type="number"
             value={price || ""}
@@ -90,7 +90,7 @@ const ItemForm = ({ existingItem }) => {
           />
         </div>
         <div>
-          <label>Weight (kg): </label>
+          <label>Weight (kg):</label>
           <input
             type="number"
             value={weight || ""}
@@ -98,7 +98,7 @@ const ItemForm = ({ existingItem }) => {
           />
         </div>
         <div>
-          <label>Quantity: </label>
+          <label>Quantity:</label>
           <input
             type="number"
             value={quantity || ""}
@@ -116,7 +116,7 @@ const ItemForm = ({ existingItem }) => {
           type="search"
           placeholder="search product on walmart"
         />
-        <button onClick={showSuggestions}>Search</button>
+        <button onClick={showSuggestions}>search</button>
         <div className="flex-container">
           {searchResults.map((item) => (
             <div key={item.id} className="walmart_item" >
@@ -127,9 +127,9 @@ const ItemForm = ({ existingItem }) => {
               <div>
                 <img src={item.thumbnail} alt={item.title} />
                 <a href={item.link} target="_blank">
-                  Walmart Link
+                  walmart link
                 </a><br/>
-                <button onClick={()=>handleSelect(item)}>Select</button>
+                <button onClick={()=>handleSelect(item)}>select</button>
               </div>
             </div>
           ))}
