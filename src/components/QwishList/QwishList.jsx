@@ -1,10 +1,9 @@
-// import { Link } from 'react-router';
-
 import { Link } from "react-router";
+import styles from "/public/styles/QwishList.module.scss";
 
 const QwishList = (props) => {
   return (
-    <main>
+    <main className={styles.container}>
     <h1>Qwishlists</h1>
       {props.lists.map((list) => (
         <article key={list._id}>

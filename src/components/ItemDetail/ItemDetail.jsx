@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router';
 import { useState, useEffect } from 'react';
 import * as itemService from '../../services/itemService';
 import { useNavigate } from 'react-router';
+import styles from "/public/styles/ItemDetail.module.scss";
 
 const ItemDetail = () => {
   const [item, setItem] = useState(null);
@@ -23,7 +24,7 @@ const ItemDetail = () => {
   };
 
   return (
-    <main>
+    <main className={styles.container}>
       <section>
         <header>
           <h2>{item.name}</h2>

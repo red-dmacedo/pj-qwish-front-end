@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { index } from "../../services/itemService";
 import ItemDetails from "../ItemDetail/ItemDetail";
 import ItemForm from "../ItemForm/ItemForm";
+import styles from "/public/styles/ItemList.module.scss";
 
 const ItemList = (props) => {
   const [items, setItems] = useState([]);
@@ -26,7 +27,7 @@ useEffect(() => {
 if (!items.length) return <div>No Items Yet!</div>;
 
 return (
-    <div>
+    <div className={styles.container}>
       <h1>Items</h1>
       <ul>
       {items.map((item, idx) => (

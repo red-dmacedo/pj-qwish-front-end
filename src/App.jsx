@@ -13,7 +13,7 @@ import QwishForm from "./components/QwishForm/QwishForm";
 import ItemList from "./components/ItemList/ItemList";
 import ItemDetails from "./components/ItemDetail/ItemDetail";
 import ItemForm from "./components/ItemForm/ItemForm";
-import styles from "../public/styles/App.module.scss";
+import styles from "/public/styles/App.module.scss";
 
 
 import * as qwishService from "./services/qwishService";
