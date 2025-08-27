@@ -7,22 +7,22 @@ const search = async (q) => {
   try {
     if(q.length>3){
 
-    //for testing purposes we will use mock because api only gave us 100 free requests (3 used already)
+    //for testing purposes we will use mock because api only gave us 100 free requests (1 used already)
     //delete this line after development of adding items part is working
     return mock
 
 
-        // const res = await fetch(`${BASE_URL}&q=${q}`, {
-        //     headers: { Authorization: `Bearer ${import.meta.env.VITE_WALMART_SEARCH_API}` },
-        // });
+    //     const res = await fetch(`${BASE_URL}&q=${q}`, {
+    //         headers: { Authorization: `Bearer ${import.meta.env.VITE_WALMART_SEARCH_API}` },
+    //     });
         
-        // const data = await res.json();
+    //     const data = await res.json();
         
-        // if (data.err) {
-        //     throw new Error(data.err);
-        // }
+    //     if (data.err) {
+    //         throw new Error(data.err);
+    //     }
         
-        // return data;
+    //     return data;
     }else{
         throw new Error('input should be more specific, longer then 3 letters');
     }
