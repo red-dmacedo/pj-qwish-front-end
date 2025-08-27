@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import * as itemService from "../../services/itemService";
 import { search as walmartSearch } from "../../services/walmartService";
 
-const ItemForm = ({ existingItem }) => {
+const ItemForm = ({ existingItem, addItem }) => {
   const [name, setName] = useState(existingItem?.name || null);
   const [img, setImg] = useState(existingItem?.img || null);
   const [description, setDescription] = useState(
@@ -31,7 +31,8 @@ const ItemForm = ({ existingItem }) => {
     if (existingItem) {
       await itemService.update(existingItem._id, itemData);
     } else {
-      await itemService.create(itemData);
+      const createdItem = await itemService.create(itemData);
+      addItem(createdItem);
     }
 
     navigate("/items");
