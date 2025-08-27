@@ -24,7 +24,7 @@ Here is a link to our front end repo on Github.
 
 Walmart API
 
-(fill out more info about this API)
+Using the Walmart API, you can browse and add items directly from Walmart to your lists.
 
 ## Technologies Used
 
