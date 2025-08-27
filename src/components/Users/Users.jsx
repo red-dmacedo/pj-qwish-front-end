@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { UserContext } from '../../contexts/UserContext';
+import styles from "/public/styles/Users.module.scss";
 
 const Users = (props) => {
   const { user } = useContext(UserContext);
@@ -23,7 +24,7 @@ const Users = (props) => {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <input type="text" placeholder='Search Users' onChange={handleSearch}/>
       <form onSubmit={handleSubmit}>
         <select>
@@ -33,7 +34,7 @@ const Users = (props) => {
         </select>
         <button type='submit'>Submit</button>
       </form>
-    </>
+    </div>
   );
 };
 

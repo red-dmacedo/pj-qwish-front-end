@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import styles from "/public/styles/QwishForm.module.scss";
 
 import * as qwishService from "../../services/qwishService";
 
@@ -43,7 +44,7 @@ const QwishForm = (props) => {
   };
 
   return (
-    <main>
+    <main className={styles.container}>
       <h1>{listId ? "Edit List" : "Add a New Qwishlist"}</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="">Event Name</label>
