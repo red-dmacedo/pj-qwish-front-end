@@ -10,7 +10,6 @@ const ItemForm = ({ existingItem }) => {
     existingItem?.description || null
   );
   const [price, setPrice] = useState(existingItem?.price || null);
-  const [weight, setWeight] = useState(existingItem?.weight || null);
   const [quantity, setQuantity] = useState(existingItem?.quantity || null);
 
   const [search, setSearch] = useState("");
@@ -26,7 +25,6 @@ const ItemForm = ({ existingItem }) => {
       img,
       description,
       price: price === "" ? null : Number(price),
-      weight: weight === "" ? null : Number(weight),
       quantity: quantity === "" ? null : Number(quantity),
     };
 
@@ -47,7 +45,6 @@ const ItemForm = ({ existingItem }) => {
     setImg(item.thumbnail)
     setDescription(item.link)
     setPrice(item.extracted_price)
-    setWeight(0)
     setQuantity(1)
     setSearch('')
     setSearchResults([])
@@ -57,7 +54,7 @@ const ItemForm = ({ existingItem }) => {
     <section style={{ display: "flex", gap: "90px" }}>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Name:</label>
+          <label>Name: </label>
           <input
             type="text"
             value={name || ""}
@@ -66,7 +63,7 @@ const ItemForm = ({ existingItem }) => {
           />
         </div>
         <div>
-          <label>Image URL:</label>
+          <label>Image URL: </label>
           <input
             type="text"
             value={img || ""}
@@ -74,14 +71,14 @@ const ItemForm = ({ existingItem }) => {
           />
         </div>
         <div>
-          <label>Description:</label>
+          <label>Description: </label>
           <textarea
             value={description || ""}
             onChange={(e) => setDescription(e.target.value || null)}
           />
         </div>
         <div>
-          <label>Price:</label>
+          <label>Price: </label>
           <input
             type="number"
             value={price || ""}
@@ -90,15 +87,7 @@ const ItemForm = ({ existingItem }) => {
           />
         </div>
         <div>
-          <label>Weight (kg):</label>
-          <input
-            type="number"
-            value={weight || ""}
-            onChange={(e) => setWeight(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Quantity:</label>
+          <label>Quantity: </label>
           <input
             type="number"
             value={quantity || ""}
@@ -116,7 +105,7 @@ const ItemForm = ({ existingItem }) => {
           type="search"
           placeholder="search product on walmart"
         />
-        <button onClick={showSuggestions}>search</button>
+        <button onClick={showSuggestions}>Search</button>
         <div className="flex-container">
           {searchResults.map((item) => (
             <div key={item.id} className="walmart_item" >
@@ -127,9 +116,9 @@ const ItemForm = ({ existingItem }) => {
               <div>
                 <img src={item.thumbnail} alt={item.title} />
                 <a href={item.link} target="_blank">
-                  walmart link
+                  Walmart Link
                 </a><br/>
-                <button onClick={()=>handleSelect(item)}>select</button>
+                <button onClick={()=>handleSelect(item)}>Select</button>
               </div>
             </div>
           ))}
