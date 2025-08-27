@@ -3,7 +3,7 @@ import styles from "./QwishList.module.scss";
 
 const QwishList = (props) => {
   return (
-    <main className={styles.container}>
+    <div className={styles.container}>
     <h1>Qwishlists</h1>
       {props.lists.map((list) => (
         <article key={list._id}>
@@ -13,7 +13,7 @@ const QwishList = (props) => {
           <Link key={list._id} to={`/lists/${list._id}`}><p>{list.name}</p></Link>
         </article>
       ))}
-    </main>
+    </div>
   );
 };
 
