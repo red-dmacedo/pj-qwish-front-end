@@ -12,12 +12,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-nav {
-  display: flex;
-  gap: 20px;
-  justify-content: flex-end;
-  width: 100%;
-}
 a {
   font-weight: 500;
   color: #646cff;
