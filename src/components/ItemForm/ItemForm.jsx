@@ -36,7 +36,7 @@ const ItemForm = ({ existingItem }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Name:</label>
+        <label>Name: </label>
         <input
           type="text"
           value={name || ''}
@@ -45,7 +45,7 @@ const ItemForm = ({ existingItem }) => {
         />
       </div>
       <div>
-        <label>Image URL:</label>
+        <label>Image URL: </label>
         <input
           type="text"
           value={img || ''}
@@ -53,14 +53,14 @@ const ItemForm = ({ existingItem }) => {
         />
       </div>
       <div>
-        <label>Description:</label>
+        <label>Description: </label>
         <textarea
           value={description || ''}
           onChange={(e) => setDescription(e.target.value || null)}
         />
       </div>
       <div>
-        <label>Price:</label>
+        <label>Price: </label>
         <input
           type="number"
           value={price || ''}
@@ -69,7 +69,7 @@ const ItemForm = ({ existingItem }) => {
         />
       </div>
       <div>
-        <label>Weight (kg):</label>
+        <label>Weight (kg): </label>
         <input
           type="number"
           value={weight || ''}
@@ -77,7 +77,7 @@ const ItemForm = ({ existingItem }) => {
         />
       </div>
       <div>
-        <label>Quantity:</label>
+        <label>Quantity: </label>
         <input
           type="number"
           value={quantity || ''}
