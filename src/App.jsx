@@ -4,6 +4,8 @@ import { useContext, useState, useEffect } from "react";
 import NavBar from "./components/NavBar/NavBar";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import SignInForm from "./components/SignInForm/SignInForm";
+import Dashboard from './components/Dashboard/Dashboard';
+import Landing from './components/Landing/Landing';
 import QwishList from "./components/QwishList/QwishList";
 import QwishDetails from "./components/QwishDetails/QwishDetails";
 import QwishForm from "./components/QwishForm/QwishForm";
@@ -73,7 +75,7 @@ const App = () => {
   }, [user]);
 
   const handleDeleteList = async (listId) => {
-    const deletedList = await qwishService.deleteList(listId);
+    const deletedList = await qwishService.remove(listId);
     setLists(lists.filter((list) => list._id !== deletedList._id));
     navigate('/lists');
   }

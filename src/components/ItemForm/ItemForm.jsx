@@ -1,15 +1,21 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
-import * as itemService from '../../services/itemService';
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import * as itemService from "../../services/itemService";
+import { search as walmartSearch } from "../../services/walmartService";
 
 const ItemForm = ({ existingItem }) => {
   const [name, setName] = useState(existingItem?.name || null);
   const [img, setImg] = useState(existingItem?.img || null);
-  const [description, setDescription] = useState(existingItem?.description || null);
+  const [description, setDescription] = useState(
+    existingItem?.description || null
+  );
   const [price, setPrice] = useState(existingItem?.price || null);
   const [weight, setWeight] = useState(existingItem?.weight || null);
   const [quantity, setQuantity] = useState(existingItem?.quantity || null);
-  
+
+  const [search, setSearch] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -19,9 +25,9 @@ const ItemForm = ({ existingItem }) => {
       name,
       img,
       description,
-      price: price === '' ? null : Number(price),
-      weight: weight === '' ? null : Number(weight),
-      quantity: quantity === '' ? null : Number(quantity),
+      price: price === "" ? null : Number(price),
+      weight: weight === "" ? null : Number(weight),
+      quantity: quantity === "" ? null : Number(quantity),
     };
 
     if (existingItem) {
@@ -30,62 +36,106 @@ const ItemForm = ({ existingItem }) => {
       await itemService.create(itemData);
     }
 
-    navigate('/items');
+    navigate("/items");
   };
+  function showSuggestions() {
+    walmartSearch(search).then((e) => setSearchResults(e.organic_results));
+  }
+
+  function handleSelect(item){
+    setName(item.title)
+    setImg(item.thumbnail)
+    setDescription(item.link)
+    setPrice(item.extracted_price)
+    setWeight(0)
+    setQuantity(1)
+    setSearch('')
+    setSearchResults([])
+  }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <section style={{ display: "flex", gap: "90px" }}>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Name:</label>
+          <input
+            type="text"
+            value={name || ""}
+            onChange={(e) => setName(e.target.value || null)}
+            required
+          />
+        </div>
+        <div>
+          <label>Image URL:</label>
+          <input
+            type="text"
+            value={img || ""}
+            onChange={(e) => setImg(e.target.value || null)}
+          />
+        </div>
+        <div>
+          <label>Description:</label>
+          <textarea
+            value={description || ""}
+            onChange={(e) => setDescription(e.target.value || null)}
+          />
+        </div>
+        <div>
+          <label>Price:</label>
+          <input
+            type="number"
+            value={price || ""}
+            onChange={(e) => setPrice(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Weight (kg):</label>
+          <input
+            type="number"
+            value={weight || ""}
+            onChange={(e) => setWeight(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Quantity:</label>
+          <input
+            type="number"
+            value={quantity || ""}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+        </div>
+        <button type="submit">
+          {existingItem ? "Update Item" : "Add Item"}
+        </button>
+      </form>
       <div>
-        <label>Name: </label>
         <input
-          type="text"
-          value={name || ''}
-          onChange={(e) => setName(e.target.value || null)}
-          required
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          type="search"
+          placeholder="search product on walmart"
         />
+        <button onClick={showSuggestions}>search</button>
+        <div className="flex-container">
+          {searchResults.map((item) => (
+            <div key={item.id} className="walmart_item" >
+              <div>
+                <h3>{item.title}</h3>
+                <h4>{item.price}</h4>
+              </div>
+              <div>
+                <img src={item.thumbnail} alt={item.title} />
+                <a href={item.link} target="_blank">
+                  walmart link
+                </a><br/>
+                <button onClick={()=>handleSelect(item)}>select</button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-      <div>
-        <label>Image URL: </label>
-        <input
-          type="text"
-          value={img || ''}
-          onChange={(e) => setImg(e.target.value || null)}
-        />
-      </div>
-      <div>
-        <label>Description: </label>
-        <textarea
-          value={description || ''}
-          onChange={(e) => setDescription(e.target.value || null)}
-        />
-      </div>
-      <div>
-        <label>Price: </label>
-        <input
-          type="number"
-          value={price || ''}
-          onChange={(e) => setPrice(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Weight (kg): </label>
-        <input
-          type="number"
-          value={weight || ''}
-          onChange={(e) => setWeight(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Quantity: </label>
-        <input
-          type="number"
-          value={quantity || ''}
-          onChange={(e) => setQuantity(e.target.value)}
-        />
-      </div>
-      <button type="submit">{existingItem ? 'Update Item' : 'Add Item'}</button>
-    </form>
+    </section>
   );
 };
 

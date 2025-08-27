@@ -8,7 +8,7 @@ const signUp = async (formData) => {
       body: JSON.stringify(formData),
     });
 
-    const data = res.json();
+    const data = await res.json();
     if(data.err) throw new Error(data.err);
 
     if (data.token) {
