@@ -64,11 +64,30 @@ button:focus-visible {
   }
 }
 
-
-table{
-  th,td{
+table {
+  th,
+  td {
     border: 1px solid white;
     width: 500px;
   }
   border-collapse: collapse;
+}
+
+.flex-container {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.walmart_item {
+  border: 1px solid white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 200px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  img {
+    width: 100%;
+  }
 }
