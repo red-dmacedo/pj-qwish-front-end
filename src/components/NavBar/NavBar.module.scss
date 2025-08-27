@@ -2,4 +2,33 @@
 
 /* ===== Elements ===== */
 /* ===== Classes ===== */
+.container {
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    background: white;
+    border-bottom: 1px solid rgb(200, 200, 200);
+    ul {
+        margin: 0;
+        width: 100%;
+        display: flex;
+        list-style: none;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    li {
+        margin-right: 20px;
+        text-align: right;
+    }
+    Link {
+        color: black;
+    }
+}
 /* ===== Ids ===== */
+#root {
+    padding-top: 3em;
+}
