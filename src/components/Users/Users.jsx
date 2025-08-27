@@ -5,7 +5,8 @@ import styles from "../../../public/styles/Users.module.scss";
 
 const Users = (props) => {
   const { user } = useContext(UserContext);
-  const sortedUsers = props.users.toSorted((a, b)=> a.name.localeCompare(b.name));
+  const sortedUsers = props.users.toSorted((a, b)=> a.username.localeCompare(b.username));
+  console.log('users:', props.users);
   const { filteredUsers, setFilteredUsers } = useState(sortedUsers);
 
   const handleSubmit = (evt) => {
@@ -19,7 +20,7 @@ const Users = (props) => {
     const match = (str1, str2) => {
       return (str1.toLowerCase().includes(str2.toLowerCase())) ? true : false;
     };
-    const curUsers = sortedUsers.filter(el => match(el.name, evt.target.value) || match(evt.target.value, el.name));
+    const curUsers = sortedUsers.filter(el => match(el.username, evt.target.value) || match(evt.target.value, el.username));
     setFilteredUsers(curUsers);
   };
 
@@ -29,7 +30,7 @@ const Users = (props) => {
       <form onSubmit={handleSubmit}>
         <select>
           {filteredUsers.map((usr, idx) => (
-            <option key={idx} value={usr._id}>{usr.name}</option>
+            <option key={idx} value={usr._id}>{usr.username}</option>
           ))}
         </select>
         <button type='submit'>Submit</button>
