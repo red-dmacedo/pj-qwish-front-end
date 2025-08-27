@@ -75,7 +75,7 @@ const App = () => {
   }, [user]);
 
   const handleDeleteList = async (listId) => {
-    const deletedList = await qwishService.deleteList(listId);
+    const deletedList = await qwishService.remove(listId);
     setLists(lists.filter((list) => list._id !== deletedList._id));
     navigate('/lists');
   }

@@ -14,7 +14,6 @@ function UserProvider({ children }) {
   const [user, setUser] = useState(getUserFromToken());
 
   const value = { user, setUser };
-  console.log(value);
 
   return (
     <UserContext.Provider value={value}>
