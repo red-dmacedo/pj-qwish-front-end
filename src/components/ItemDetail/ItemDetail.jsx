@@ -1,5 +1,45 @@
-const ItemDetails = () => {
-  return <main>Item Details</main>;
+import { useParams, Link } from 'react-router';
+import { useState, useEffect } from 'react';
+import * as itemService from '../../services/itemService';
+import { useNavigate } from 'react-router';
+
+const ItemDetail = () => {
+  const [item, setItem] = useState(null);
+  const navigate = useNavigate();
+  const {itemId} = useParams
+
+  useEffect(() => {
+    const fetchItem = async () => {
+      const itemData = await itemService.show(itemId);
+      setItem(itemData);
+    };
+
+    fetchItem();
+  }, [itemId]);
+
+  const handleDeleteItem = async () => {
+    await itemService.remove(itemId);
+    navigate('/items');
+  };
+
+  return (
+    <main>
+      <section>
+        <header>
+          <h2>{item.name}</h2>
+          {item.img && <img src={item.img} alt={item.name} />}
+          <p>{item.description}</p>
+          <p>Price: ${item.price}</p>
+          {item.weight !== null && <p>Weight: {item.weight} kg</p>}
+          {item.quantity !== null && <p>Quantity: {item.quantity}</p>}
+          <div>
+            <Link to={`/items/${itemId}/edit`}>Edit</Link>
+            <button onClick={handleDeleteItem}>Delete</button>
+          </div>
+        </header>
+      </section>
+    </main>
+  );
 };
 
-export default ItemDetails;
+export default ItemDetail;
