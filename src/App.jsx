@@ -1,5 +1,6 @@
 import { Routes, Route, useNavigate } from "react-router";
 import { useContext, useState, useEffect } from "react";
+import { UserContext } from "./contexts/UserContext";
 
 import NavBar from "./components/NavBar/NavBar";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
@@ -12,8 +13,8 @@ import QwishForm from "./components/QwishForm/QwishForm";
 import ItemList from "./components/ItemList/ItemList";
 import ItemDetails from "./components/ItemDetail/ItemDetail";
 import ItemForm from "./components/ItemForm/ItemForm";
+import styles from "../public/styles/App.module.scss";
 
-import { UserContext } from "./contexts/UserContext";
 
 import * as qwishService from "./services/qwishService";
 import * as itemService from "./services/itemService";
@@ -87,7 +88,7 @@ const App = () => {
   }
 
   return (
-    <>
+    <main className={styles.container}>
       <NavBar authenticated={authenticated} handleLogOut={handleLogOut} />
       <Routes>
         <Route path="/" element={user ? <Dashboard /> : <Landing />} />
@@ -118,7 +119,7 @@ const App = () => {
           </>
         )}
       </Routes>
-    </>
+    </main>
   );
 };
 
