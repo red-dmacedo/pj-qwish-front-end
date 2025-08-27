@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { signUp } from '../../services/authService';
 import { UserContext } from '../../contexts/UserContext';
-import styles from "/public/styles/SignUpForm.module.scss";
+import styles from "../../../public/styles/SignUpForm.module.scss";
 
 const SignUpForm = () => {
   const navigate = useNavigate();

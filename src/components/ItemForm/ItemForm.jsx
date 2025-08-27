@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import * as itemService from "../../services/itemService";
 import { search as walmartSearch } from "../../services/walmartService";
-import styles from "/public/styles/ItemForm.module.scss";
+import styles from "../../../public/styles/ItemForm.module.scss";
 
 const ItemForm = ({ existingItem, handleAddItem }) => {
   const [name, setName] = useState(existingItem?.name || null);
