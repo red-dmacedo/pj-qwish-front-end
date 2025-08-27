@@ -14,7 +14,7 @@ import ItemList from "./components/ItemList/ItemList";
 import ItemDetails from "./components/ItemDetail/ItemDetail";
 import ItemForm from "./components/ItemForm/ItemForm";
 import Users from "./components/Users/Users";
-import styles from "/public/styles/App.module.scss";
+import styles from "./App.module.scss";
 
 import * as qwishService from "./services/qwishService";
 import * as itemService from "./services/itemService";

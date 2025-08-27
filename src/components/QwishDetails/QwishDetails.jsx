@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router";
 import { useState, useEffect } from "react";
-import styles from "../../../public/styles/QwishDetails.module.scss";
+import styles from "./QwishDetails.module.scss";
 
 import * as qwishService from "../../services/qwishService";
 

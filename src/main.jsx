@@ -1,4 +1,4 @@
-import styles from "../public/styles/Main.module.scss";
+import styles from "./Main.module.scss";
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from "react-router";

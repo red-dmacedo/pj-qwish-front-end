@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import * as userService from '../../services/userService';
-import styles from "../../../public/styles/Dashboard.module.scss";
+import styles from "./Dashboard.module.scss";
 
 const Dashboard = () => {
   const { user } = useContext(UserContext);

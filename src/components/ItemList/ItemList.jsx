@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { index } from "../../services/itemService";
 import ItemDetails from "../ItemDetail/ItemDetail";
 import ItemForm from "../ItemForm/ItemForm";
-import styles from "../../../public/styles/ItemList.module.scss";
+import styles from "./ItemList.module.scss";
 
 const ItemList = (props) => {
   const [items, setItems] = useState([]);
