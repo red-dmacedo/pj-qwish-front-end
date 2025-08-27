@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import * as itemService from "../../services/itemService";
 import { search as walmartSearch } from "../../services/walmartService";
 
-const ItemForm = ({ existingItem, addItem }) => {
+const ItemForm = ({ existingItem, handleAddItem }) => {
   const [name, setName] = useState(existingItem?.name || null);
   const [img, setImg] = useState(existingItem?.img || null);
   const [description, setDescription] = useState(existingItem?.description || null);
@@ -29,7 +29,7 @@ const ItemForm = ({ existingItem, addItem }) => {
       await itemService.update(existingItem._id, itemData);
     } else {
       const createdItem = await itemService.create(itemData);
-      addItem(createdItem);
+      await handleAddItem(createdItem);
       navigate("/items");
     }
   };
@@ -92,7 +92,9 @@ const ItemForm = ({ existingItem, addItem }) => {
             onChange={(e) => setQuantity(e.target.value)}
           />
         </div>
-        <button type="submit">
+        <button 
+        // onClick={()=>handleSubmit(addItem)} 
+        type="submit">
           {existingItem ? "Update Item" : "Add Item"}
         </button>
       </form>
@@ -105,8 +107,8 @@ const ItemForm = ({ existingItem, addItem }) => {
         />
         <button onClick={showSuggestions}>Search</button>
         <div className="flex-container">
-          {searchResults.map((item) => (
-            <div key={item.id} className="walmart_item" >
+          {searchResults.map((item, idx) => (
+            <div key={idx} className="walmart_item" >
               <div>
                 <h3>{item.title}</h3>
                 <h4>{item.price}</h4>

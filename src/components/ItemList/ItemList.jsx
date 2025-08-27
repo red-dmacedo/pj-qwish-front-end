@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { index } from "../../services/itemService";
 import ItemDetails from "../ItemDetail/ItemDetail";
+import ItemForm from "../ItemForm/ItemForm";
 
-const ItemList = () => {
+const ItemList = (props) => {
   const [items, setItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -18,9 +19,9 @@ useEffect(() => {
   fetchItems();
 }, []);
 
-const addItem = (newItem) => {
-  setItems((prevItems) => [...prevItems, newItem]);
-};
+// const handleAddItem = (newItem) => {
+//   setItems((prevItems) => [...prevItems, newItem]);
+// };
 
 if (!items.length) return <div>No Items Yet!</div>;
 
@@ -28,14 +29,14 @@ return (
     <div>
       <h1>Items</h1>
       <ul>
-      {items.map((item) => (
-        <li key={item.id} onClick={() => setSelectedItem(item.id)}>
+      {items.map((item, idx) => (
+        <li key={idx} onClick={() => setSelectedItem(item._id)}>
           {item.name}
         </li>
       ))}
       </ul>
       {selectedItem && <ItemDetails itemId={selectedItem} />}
-      <ItemForm addItem={addItem} />
+      <ItemForm handleAddItem={props.handleAddItem} />
     </div>
   );
 };
