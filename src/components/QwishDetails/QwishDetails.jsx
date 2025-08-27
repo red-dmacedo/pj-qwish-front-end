@@ -34,6 +34,7 @@ const QwishDetails = (props) => {
             timeZone: "UTC",
           })}
         </p>
+        <Link to={`/lists/${listId}/edit`}>Edit List</Link>
         <button onClick={() => props.handleDeleteList(listId)}>Delete List</button>
       </section>
     </main>
