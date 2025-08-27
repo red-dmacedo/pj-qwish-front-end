@@ -37,7 +37,7 @@ const QwishForm = (props) => {
 
     return (
         <main>
-            <h1>Qwish Form</h1>
+            <h1>Add a New Qwishlist</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="">Event Name</label>
                 <input required type="text"
