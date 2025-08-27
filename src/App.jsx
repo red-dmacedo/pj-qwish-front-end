@@ -13,16 +13,18 @@ import QwishForm from "./components/QwishForm/QwishForm";
 import ItemList from "./components/ItemList/ItemList";
 import ItemDetails from "./components/ItemDetail/ItemDetail";
 import ItemForm from "./components/ItemForm/ItemForm";
+import Users from "./components/Users/Users";
 import styles from "/public/styles/App.module.scss";
-
 
 import * as qwishService from "./services/qwishService";
 import * as itemService from "./services/itemService";
+import * as userService from "./services/userService";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [lists, setLists] = useState([]);
   const [items, setItems] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const { user } = useContext(UserContext);
 
@@ -72,7 +74,12 @@ const App = () => {
       setItems(itemData);
     };
 
-    if (user) fetchAllItems(), fetchAllLists();
+    const fetchAllUsers = async() => {
+      const userData = await userService.index();
+      setUsers(userData);
+    };
+
+    if (user) fetchAllItems(), fetchAllLists(), fetchAllUsers();
   }, [user]);
 
   const handleDeleteList = async (listId) => {
@@ -95,22 +102,16 @@ const App = () => {
         {user ? (
           <>
             <Route path="/lists" element={<QwishList lists={lists} />} />
-            <Route
-              path="/lists/:listId"
-              element={<QwishDetails handleDeleteList={handleDeleteList} />}
-            />
-            <Route
-              path="/lists/new"
-              element={<QwishForm handleAddList={handleAddList} />}
-            />
-            <Route
-              path="lists/:listId/edit"
-              element={<QwishForm handleUpdateList={handleUpdateList} />}
-            />
+            <Route path="/lists/new" element={<QwishForm handleAddList={handleAddList} />} />
+            <Route path="/lists/:listId" element={<QwishDetails handleDeleteList={handleDeleteList} />} />
+            <Route path="/lists/:listId/edit" element={<QwishForm handleUpdateList={handleUpdateList} />} />
+
             <Route path="/items" element={<ItemList items={items} />} />
             <Route path="/items/new" element={<ItemForm handleAddItem={handleAddItem} />} />
-            <Route path="/items/:itemId/edit" element={<ItemForm handleUpdateItem={handleUpdateItem} />} />
             <Route path="/items/:itemId" element={<ItemDetails handleDeleteItem={handleDeleteItem} />} />
+            <Route path="/items/:itemId/edit" element={<ItemForm handleUpdateItem={handleUpdateItem} />} />
+
+            <Route path="/users" element={<Users users={users} />} />
           </>
         ) : (
           <>
