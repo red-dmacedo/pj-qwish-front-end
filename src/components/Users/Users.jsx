@@ -6,8 +6,9 @@ import styles from "./Users.module.scss";
 const Users = (props) => {
   const { user } = useContext(UserContext);
   const sortedUsers = props.users.toSorted((a, b)=> a.username.localeCompare(b.username));
-  console.log('users:', props.users);
-  const { filteredUsers, setFilteredUsers } = useState(sortedUsers);
+  const [ filteredUsers, setFilteredUsers ] = useState(sortedUsers);
+  console.log('sorted:', sortedUsers);
+  console.log('filtered:', filteredUsers);
 
   const handleSubmit = (evt) => {
     evt.preventDefault;
@@ -26,14 +27,15 @@ const Users = (props) => {
 
   return (
     <div className={styles.container}>
-      <input type="text" placeholder='Search Users' onChange={handleSearch}/>
+      <h1>Find Friends</h1>
+      <input type="text" placeholder='Search Username' onChange={handleSearch}/>
       <form onSubmit={handleSubmit}>
         <select>
           {filteredUsers.map((usr, idx) => (
             <option key={idx} value={usr._id}>{usr.username}</option>
           ))}
         </select>
-        <button type='submit'>Submit</button>
+        <button type='submit'>Add</button>
       </form>
     </div>
   );
