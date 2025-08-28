@@ -39,7 +39,7 @@ const App = () => {
 
   const handleAddItem = async (itemData) => {
     const newItem = await itemService.create(itemData);
-    if (newItem){
+    if (newItem) {
       setItems([newItem, ...items]);
       window.location.reload();
     }
@@ -94,41 +94,55 @@ const App = () => {
 
   return (
     <main className={styles.container}>
-    <>
-      <NavBar authenticated={authenticated} handleLogOut={handleLogOut} />
-      <div className={styles.primaryBody}>
-      <Routes>
-        <Route path="/" element={user ? <Dashboard /> : <Landing />} />
-        {user ? (
-          <>
-            <Route path="/lists" element={<QwishList lists={lists} />} />
-            <Route
-              path="/lists/:listId"
-              element={<QwishDetails handleDeleteList={handleDeleteList} />}
-            />
-            <Route
-              path="/lists/new"
-              element={<QwishForm handleAddList={handleAddList} />}
-            />
-            <Route
-              path="lists/:listId/edit"
-              element={<QwishForm handleUpdateList={handleUpdateList} />}
-            />
-            <Route path="/items" element={<ItemList items={items} handleAddItem={handleAddItem}  />} />
-            <Route path="/items/:itemId" element={<ItemDetails handleDeleteItem={handleDeleteItem} setSelectedItem={setSelectedItem} />} />
-            <Route path="/items/:itemId/edit" element={<ItemForm handleAddItem={handleAddItem} handleUpdateItem={handleUpdateItem} existingItem={selectedItem} />} />
-
-            <Route path="/users" element={<Users />} />
-          </>
-        ) : (
-          <>
-            <Route path="/sign-up" element={<SignUpForm />} />
-            <Route path="/sign-in" element={<SignInForm />} />
-          </>
-        )}
-      </Routes>
-    </div>
-    </>
+      <>
+        <NavBar authenticated={authenticated} handleLogOut={handleLogOut} />
+        <div className={styles.primaryBody}>
+          <Routes>
+            <Route path="/" element={user ? <Dashboard /> : <Landing />} />
+            {user ? (
+              <>
+                <Route path="/lists" element={<QwishList lists={lists} />} />
+                <Route
+                  path="/lists/:listId"
+                  element={<QwishDetails handleDeleteList={handleDeleteList} />}
+                />
+                <Route
+                  path="/lists/new"
+                  element={<QwishForm handleAddList={handleAddList} />}
+                />
+                <Route
+                  path="lists/:listId/edit"
+                  element={<QwishForm handleUpdateList={handleUpdateList} />}
+                />
+                <Route
+                  path="/items/new/:listId"
+                  element={<ItemForm handleAddItem={handleAddItem} />}
+                />
+                <Route
+                  path="/items"
+                  element={<ItemList items={items} />}
+                />
+                <Route
+                  path="/items/:itemId"
+                  element={<ItemDetails handleDeleteItem={handleDeleteItem}
+                    setSelectedItem={setSelectedItem} />}
+                />
+                <Route
+                  path="/items/:itemId/edit"
+                  element={<ItemForm handleAddItem={handleAddItem}
+                    handleUpdateItem={handleUpdateItem} selectedItem={selectedItem} />}
+                />
+                <Route path="/users" element={<Users />} />
+              </>
+            ) : (
+              <>
+                <Route path="/sign-up" element={<SignUpForm />} />
+                <Route path="/sign-in" element={<SignInForm />} />
+              </>
+            )}
+          </Routes>
+        </div>
+      </>
     </main>
   );
 };

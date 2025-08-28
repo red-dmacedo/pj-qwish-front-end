@@ -1,16 +1,17 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { search as walmartSearch } from "../../services/walmartService";
 import styles from "./ItemForm.module.scss";
 
-const ItemForm = ({ existingItem, handleAddItem, handleUpdateItem }) => {
-  const [name, setName] = useState(existingItem?.name || null);
-  const [img, setImg] = useState(existingItem?.img || null);
-  const [description, setDescription] = useState(existingItem?.description || null);
-  const [price, setPrice] = useState(existingItem?.price || null);
-  const [quantity, setQuantity] = useState(existingItem?.quantity || null);
+const ItemForm = ({ handleAddItem }) => {
+  const [name, setName] = useState("");
+  const [img, setImg] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState(1);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const { listId } = useParams();
 
   const navigate = useNavigate();
 
@@ -21,33 +22,37 @@ const ItemForm = ({ existingItem, handleAddItem, handleUpdateItem }) => {
       name,
       img,
       description,
-      price: price === "" ? null : Number(price),
-      quantity: quantity === "" ? null : Number(quantity),
+      price: price ? Number(price) : null,
+      quantity: quantity ? Number(quantity) : null,
+      listId,
     };
 
-    if (existingItem) {
-      await handleUpdateItem(existingItem._id, itemData);
-      navigate("/items");
-    } else {
-      await handleAddItem(itemData);
-      navigate("/items");
-    }
+    await handleAddItem(itemData);
+    navigate(`/lists/${listId}`);
   };
+
+  //   if (existingItem) {
+  //     await handleUpdateItem(existingItem._id, itemData);
+  //     navigate("/items");
+  //   } else {
+  //     await handleAddItem(itemData);
+  //     navigate("/items");
+  //   }
+  // };
   
-  // other contributor additions 
-  function showSuggestions() {
+  const showSuggestions = () => {
     walmartSearch(search).then((e) => setSearchResults(e.organic_results));
-  }
-  function handleSelect(item){
-    setName(item.title)
-    setImg(item.thumbnail)
-    setDescription(item.link)
-    setPrice(item.extracted_price)
-    setQuantity(1)
-    setSearch('')
-    setSearchResults([])
-  }
-//=================================
+  };
+
+  const handleSelect = (item) => {
+    setName(item.title);
+    setImg(item.thumbnail);
+    setDescription(item.link);
+    setPrice(item.extracted_price);
+    setQuantity(1);
+    setSearch('');
+    setSearchResults([]);
+  };
 
   return (
     <section className={styles.container} style={{ display: "flex", gap: "90px" }}>
@@ -56,8 +61,8 @@ const ItemForm = ({ existingItem, handleAddItem, handleUpdateItem }) => {
           <label>Name: </label>
           <input
             type="text"
-            value={name || ""}
-            onChange={(e) => setName(e.target.value || null)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
           />
         </div>
@@ -65,22 +70,22 @@ const ItemForm = ({ existingItem, handleAddItem, handleUpdateItem }) => {
           <label>Image URL: </label>
           <input
             type="text"
-            value={img || ""}
-            onChange={(e) => setImg(e.target.value || null)}
+            value={img}
+            onChange={(e) => setImg(e.target.value)}
           />
         </div>
         <div>
           <label>Description: </label>
           <textarea
-            value={description || ""}
-            onChange={(e) => setDescription(e.target.value || null)}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
         <div>
           <label>Price: </label>
           <input
             type="number"
-            value={price || ""}
+            value={price}
             onChange={(e) => setPrice(e.target.value)}
             required
           />
@@ -89,14 +94,11 @@ const ItemForm = ({ existingItem, handleAddItem, handleUpdateItem }) => {
           <label>Quantity: </label>
           <input
             type="number"
-            value={quantity || ""}
+            value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
           />
         </div>
-        <button 
-        type="submit">
-          {existingItem ? "Update Item" : "Add Item"}
-        </button>
+        <button type="submit">Add Item</button>
       </form>
 
       {/* //other contributor additions */}
@@ -117,9 +119,10 @@ const ItemForm = ({ existingItem, handleAddItem, handleUpdateItem }) => {
               </div>
               <div>
                 <img src={item.thumbnail} alt={item.title} />
-                <a href={item.link} target="_blank">
+                <a href={item.link} target="_blank" rel="noopener noreferrer">
                   Walmart Link
-                </a><br/>
+                </a>
+                <br />
                 <button onClick={()=>handleSelect(item)}>Select</button>
               </div>
             </div>
