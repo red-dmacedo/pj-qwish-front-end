@@ -12,6 +12,7 @@ import QwishForm from "./components/QwishForm/QwishForm";
 import ItemList from "./components/ItemList/ItemList";
 import ItemDetails from "./components/ItemDetail/ItemDetail";
 import ItemForm from "./components/ItemForm/ItemForm";
+import Users from "./components/Users/Users";
 
 import { UserContext } from "./contexts/UserContext";
 
