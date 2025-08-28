@@ -25,6 +25,7 @@ const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [lists, setLists] = useState([]);
   const [items, setItems] = useState([]);
+  const [selectedItem, setSelectedItem] = useState({});
 
   const { user } = useContext(UserContext);
 
@@ -36,10 +37,12 @@ const App = () => {
     navigate('/lists');
   }
 
-  const handleAddItem = async (itemFormData) => {
-    const newItem = await itemService.create(itemFormData);
-    setItems([newItem, ...items]);
-    navigate('/items');
+  const handleAddItem = async (itemData) => {
+    const newItem = await itemService.create(itemData);
+    if (newItem){
+      setItems([newItem, ...items]);
+      window.location.reload();
+    }
   }
 
   const handleDeleteItem = async (itemId) => {
@@ -48,8 +51,8 @@ const App = () => {
     navigate('/items');
   }
 
-  const handleUpdateItem = async (itemId, itemFormData) => {
-    const updatedItem = await itemService.update(itemId, itemFormData);
+  const handleUpdateItem = async (itemId, itemData) => {
+    const updatedItem = await itemService.update(itemId, itemData);
     setItems(items.map((item) => (itemId === item._id ? updatedItem : item)));
     navigate(`/items/${itemId}`);
   }
@@ -111,10 +114,9 @@ const App = () => {
               path="lists/:listId/edit"
               element={<QwishForm handleUpdateList={handleUpdateList} />}
             />
-            <Route path="/items" element={<ItemList items={items}  />} />
-            <Route path="/items/new" element={<ItemForm handleAddItem={handleAddItem} />} />
-            <Route path="/items/:itemId" element={<ItemDetails handleDeleteItem={handleDeleteItem} />} />
-            <Route path="/items/:itemId/edit" element={<ItemForm handleUpdateItem={handleUpdateItem} />} />
+            <Route path="/items" element={<ItemList items={items} handleAddItem={handleAddItem}  />} />
+            <Route path="/items/:itemId" element={<ItemDetails handleDeleteItem={handleDeleteItem} setSelectedItem={setSelectedItem} />} />
+            <Route path="/items/:itemId/edit" element={<ItemForm handleAddItem={handleAddItem} handleUpdateItem={handleUpdateItem} existingItem={selectedItem} />} />
 
             <Route path="/users" element={<Users />} />
           </>
