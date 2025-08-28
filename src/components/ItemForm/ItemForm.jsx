@@ -28,6 +28,7 @@ const ItemForm = ({ existingItem, handleAddItem }) => {
 
     if (existingItem) {
       await itemService.update(existingItem._id, itemData);
+      navigate("/items");
     } else {
       const createdItem = await itemService.create(itemData);
       await handleAddItem(createdItem);
@@ -94,7 +95,6 @@ const ItemForm = ({ existingItem, handleAddItem }) => {
           />
         </div>
         <button 
-        // onClick={()=>handleSubmit(addItem)} 
         type="submit">
           {existingItem ? "Update Item" : "Add Item"}
         </button>
