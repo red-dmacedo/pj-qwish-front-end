@@ -107,10 +107,10 @@ const App = () => {
             <Route path="/lists/:listId" element={<QwishDetails handleDeleteList={handleDeleteList} />} />
             <Route path="/lists/:listId/edit" element={<QwishForm handleUpdateList={handleUpdateList} />} />
 
-            <Route path="/items" element={<ItemList items={items} />} />
+            <Route path="/items" element={<ItemList handleAddItem={handleAddItem} handleDeleteItem={handleDeleteItem} />} />
             <Route path="/items/new" element={<ItemForm handleAddItem={handleAddItem} />} />
-            <Route path="/items/:itemId" element={<ItemDetails handleDeleteItem={handleDeleteItem} />} />
             <Route path="/items/:itemId/edit" element={<ItemForm handleUpdateItem={handleUpdateItem} />} />
+            <Route path="/items/:itemId" element={<ItemDetails handleDeleteItem={handleDeleteItem} />} />
 
             <Route path="/users" element={<Users users={users} />} />
           </>
