@@ -3,6 +3,7 @@ import styles from "./Landing.module.scss";
 const Landing = () => {
   return (
     <main className={styles.container}>
+    <div className={styles.bodyText}>
       <h1>Qwish</h1>
       <h2>Making gift-giving easy, fun, and stress-free.</h2>
 
@@ -29,6 +30,7 @@ const Landing = () => {
 
       <h2>Newsletter Signup</h2>
       <p>(Newsletter signup form)</p>
+      </div>
     </main>
   );
 };

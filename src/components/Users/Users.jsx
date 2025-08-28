@@ -18,7 +18,7 @@ const Users = (props) => {
   useEffect(() => {
     const fetchAllUsers = async () => {
       const userData = await userService.index();
-      const sortedUsers = userData.toSorted((a, b) => a.username.localeCompare(b.username));
+      const sortedUsers = userData.filter(el => el._id !== user._id).toSorted((a, b) => a.username.localeCompare(b.username));
       setUserList(sortedUsers);
       setUsers(sortedUsers);
     };

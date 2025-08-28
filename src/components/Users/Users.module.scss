@@ -6,10 +6,7 @@
   place-items: center;
 }
 .friendSearchForm {
-  display: flex;
-  flex-direction: column;
-  // place-self: center;
-  // margin-left: 100px;
+  border-radius: 10px;
   background-color: rgb(225,225,225);
   gap: 10px;
   button {

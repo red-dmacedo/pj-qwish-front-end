@@ -2,4 +2,10 @@
 
 /* ===== Elements ===== */
 /* ===== Classes ===== */
+.container {
+  place-items: center;
+  h1 {
+    place-self: center;
+  }
+}
 /* ===== Ids ===== */
