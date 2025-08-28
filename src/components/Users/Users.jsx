@@ -9,7 +9,6 @@ const Users = (props) => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const [users, setUsers] = useState([]);
-  let userList;
 
   if (!user) {
     navigate('/sign-in');
@@ -18,13 +17,14 @@ const Users = (props) => {
   useEffect(() => {
     const fetchAllUsers = async () => {
       const userData = await userService.index();
-      userList = userData.sort((a, b) => a.username.localeCompare(b.username));
+      const userList = userData.sort((a, b) => a.username.localeCompare(b.username));
       setUsers(userList);
     };
 
     if (user) fetchAllUsers();
   }, [user]);
 
+  const userList = users;
   const handleSubmit = (evt) => {
     evt.preventDefault;
     const friendId = evt.target.value;
@@ -37,6 +37,7 @@ const Users = (props) => {
     const match = (str1, str2) => {
       return (str1.toLowerCase().includes(str2.toLowerCase())) ? true : false;
     };
+    console.log(userList);
     const filteredUsers = userList.filter(el => match(el.username, evt.target.value) || match(evt.target.value, el.username));
     setUsers(filteredUsers);
   };
