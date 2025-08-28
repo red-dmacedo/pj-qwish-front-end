@@ -36,10 +36,10 @@ const ItemForm = ({ existingItem, handleAddItem }) => {
     }
   };
   
+  //other contributor additions
   function showSuggestions() {
     walmartSearch(search).then((e) => setSearchResults(e.organic_results));
   }
-
   function handleSelect(item){
     setName(item.title)
     setImg(item.thumbnail)
@@ -49,6 +49,7 @@ const ItemForm = ({ existingItem, handleAddItem }) => {
     setSearch('')
     setSearchResults([])
   }
+//=================================
 
   return (
     <section className={styles.container} style={{ display: "flex", gap: "90px" }}>
@@ -99,6 +100,8 @@ const ItemForm = ({ existingItem, handleAddItem }) => {
           {existingItem ? "Update Item" : "Add Item"}
         </button>
       </form>
+
+      //other contributor additions
       <div>
         <input
           value={search}
