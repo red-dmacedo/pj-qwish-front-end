@@ -40,7 +40,6 @@ const Users = (props) => {
     };
     const filteredUsers = userList.filter(el => match(el.username, evt.target.value) || match(evt.target.value, el.username));
     (evt.target.value) ? setUsers(filteredUsers) : setUsers(userList);
-    console.log('userList:', userList);
   };
 
   return (
