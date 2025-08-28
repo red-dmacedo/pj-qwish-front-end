@@ -1,39 +1,59 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { UserContext } from '../../contexts/UserContext';
 import styles from "./Users.module.scss";
 
+import * as userService from "../../services/userService";
+
 const Users = (props) => {
+  const navigate = useNavigate();
   const { user } = useContext(UserContext);
-  const sortedUsers = props.users.toSorted((a, b)=> a.username.localeCompare(b.username));
-  console.log('users:', props.users);
-  const { filteredUsers, setFilteredUsers } = useState(sortedUsers);
+  const [userList, setUserList] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  if (!user) {
+    navigate('/sign-in');
+  };
+
+  useEffect(() => {
+    const fetchAllUsers = async () => {
+      const userData = await userService.index();
+      const sortedUsers = userData.toSorted((a, b) => a.username.localeCompare(b.username));
+      setUserList(sortedUsers);
+      setUsers(sortedUsers);
+    };
+
+    if (user) fetchAllUsers();
+  }, [user]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault;
     const friendId = evt.target.value;
     // created this for later:
     // props.handleAddFriend(user._id, friendId)
+    navigate('/');
   };
 
   const handleSearch = (evt) => {
     const match = (str1, str2) => {
       return (str1.toLowerCase().includes(str2.toLowerCase())) ? true : false;
     };
-    const curUsers = sortedUsers.filter(el => match(el.username, evt.target.value) || match(evt.target.value, el.username));
-    setFilteredUsers(curUsers);
+    const filteredUsers = userList.filter(el => match(el.username, evt.target.value) || match(evt.target.value, el.username));
+    (evt.target.value) ? setUsers(filteredUsers) : setUsers(userList);
+    console.log('userList:', userList);
   };
 
   return (
     <div className={styles.container}>
-      <input type="text" placeholder='Search Users' onChange={handleSearch}/>
+      <h1>Find Friends</h1>
       <form onSubmit={handleSubmit}>
+        <input type="text" placeholder='Search Username' onChange={handleSearch} />
         <select>
-          {filteredUsers.map((usr, idx) => (
+          {users.map((usr, idx) => (
             <option key={idx} value={usr._id}>{usr.username}</option>
           ))}
         </select>
-        <button type='submit'>Submit</button>
+        <button type='submit'>Add</button>
       </form>
     </div>
   );

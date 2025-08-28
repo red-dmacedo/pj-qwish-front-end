@@ -12,6 +12,7 @@ import QwishForm from "./components/QwishForm/QwishForm";
 import ItemList from "./components/ItemList/ItemList";
 import ItemDetails from "./components/ItemDetail/ItemDetail";
 import ItemForm from "./components/ItemForm/ItemForm";
+import Users from "./components/Users/Users";
 
 import { UserContext } from "./contexts/UserContext";
 
@@ -114,6 +115,8 @@ const App = () => {
             <Route path="/items/new" element={<ItemForm handleAddItem={handleAddItem} />} />
             <Route path="/items/:itemId" element={<ItemDetails handleDeleteItem={handleDeleteItem} />} />
             <Route path="/items/:itemId/edit" element={<ItemForm handleUpdateItem={handleUpdateItem} />} />
+
+            <Route path="/users" element={<Users />} />
           </>
         ) : (
           <>
