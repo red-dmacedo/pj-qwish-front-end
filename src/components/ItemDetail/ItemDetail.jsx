@@ -26,11 +26,10 @@ const ItemDetail = ({handleDeleteItem}) => {
           {item.img && <img src={item.img} alt={item.name} />}
           <p>{item.description}</p>
           <p>Price: ${item.price}</p>
-          {item.weight !== null && <p>Weight: {item.weight} kg</p>}
           {item.quantity !== null && <p>Quantity: {item.quantity}</p>}
           <div>
             <Link to={`/items/${itemId}/edit`}>Edit</Link>
-            <button onClick={handleDeleteItem}>Delete</button>
+            <button onClick={() => handleDeleteItem(itemId)}>Delete</button>
           </div>
         </header>
       </section>
