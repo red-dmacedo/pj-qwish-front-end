@@ -4,7 +4,7 @@ import ItemDetails from "../ItemDetail/ItemDetail";
 import ItemForm from "../ItemForm/ItemForm";
 import styles from "./ItemList.module.scss";
 
-const ItemList = (props) => {
+const ItemList = ({handleAddItem, handleDeleteItem}) => {
   const [items, setItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -36,8 +36,8 @@ return (
         </li>
       ))}
       </ul>
-      {selectedItem && <ItemDetails itemId={selectedItem} />}
-      <ItemForm handleAddItem={props.handleAddItem} />
+      {selectedItem && <ItemDetails itemId={selectedItem} handleDeleteItem={handleDeleteItem} />}
+      <ItemForm handleAddItem={handleAddItem} />
     </div>
   );
 };
