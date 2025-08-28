@@ -21,7 +21,13 @@ const Dashboard = () => {
 
   return (
     <main className={styles.container}>
-      <h1>Welcome, {user.username}</h1>
+      <h1>Welcome, {user.username}!</h1>
+      
+      <h2>Ready to update your wishlist? Add a new wishlist?</h2>
+
+      <h1>My Qwishlists</h1>
+
+
       <ul>
         {userList.map((user, idx) => (
           <li key={idx}>
