@@ -1,6 +1,5 @@
 import { Routes, Route, useNavigate } from "react-router";
 import { useContext, useState, useEffect } from "react";
-import { UserContext } from "./contexts/UserContext";
 
 import NavBar from "./components/NavBar/NavBar";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
@@ -13,11 +12,13 @@ import QwishForm from "./components/QwishForm/QwishForm";
 import ItemList from "./components/ItemList/ItemList";
 import ItemDetails from "./components/ItemDetail/ItemDetail";
 import ItemForm from "./components/ItemForm/ItemForm";
-import Users from "./components/Users/Users";
-import styles from "./App.module.scss";
+
+import { UserContext } from "./contexts/UserContext";
 
 import * as qwishService from "./services/qwishService";
 import * as itemService from "./services/itemService";
+
+import styles from "./App.module.scss";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -89,6 +90,7 @@ const App = () => {
 
   return (
     <main className={styles.container}>
+    <>
       <NavBar authenticated={authenticated} handleLogOut={handleLogOut} />
       <div className={styles.primaryBody}>
       <Routes>
@@ -96,11 +98,19 @@ const App = () => {
         {user ? (
           <>
             <Route path="/lists" element={<QwishList lists={lists} />} />
-            <Route path="/lists/new" element={<QwishForm handleAddList={handleAddList} />} />
-            <Route path="/lists/:listId" element={<QwishDetails handleDeleteList={handleDeleteList} />} />
-            <Route path="/lists/:listId/edit" element={<QwishForm handleUpdateList={handleUpdateList} />} />
-
-            <Route path="/items" element={<ItemList items={items} />} />
+            <Route
+              path="/lists/:listId"
+              element={<QwishDetails handleDeleteList={handleDeleteList} />}
+            />
+            <Route
+              path="/lists/new"
+              element={<QwishForm handleAddList={handleAddList} />}
+            />
+            <Route
+              path="lists/:listId/edit"
+              element={<QwishForm handleUpdateList={handleUpdateList} />}
+            />
+            <Route path="/items" element={<ItemList items={items}  />} />
             <Route path="/items/new" element={<ItemForm handleAddItem={handleAddItem} />} />
             <Route path="/items/:itemId" element={<ItemDetails handleDeleteItem={handleDeleteItem} />} />
             <Route path="/items/:itemId/edit" element={<ItemForm handleUpdateItem={handleUpdateItem} />} />
@@ -114,7 +124,8 @@ const App = () => {
           </>
         )}
       </Routes>
-      </div>
+    </div>
+    </>
     </main>
   );
 };

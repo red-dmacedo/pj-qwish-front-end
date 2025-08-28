@@ -12,9 +12,9 @@ const index = async () => {
   };
 };
 
-const create = async (itemFormData) => {
-  try {
-    const res = await fetch(`${BASE_URL}`, {
+const create = async(itemFormData)=> {
+  try{
+    const res = await fetch(BASE_URL, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
