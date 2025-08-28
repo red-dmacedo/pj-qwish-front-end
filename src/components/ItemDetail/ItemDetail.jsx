@@ -30,7 +30,7 @@ const ItemDetail = ({handleDeleteItem}) => {
           {item.quantity !== null && <p>Quantity: {item.quantity}</p>}
           <div>
             <Link to={`/items/${itemId}/edit`}>Edit</Link>
-            <button onClick={handleDeleteItem}>Delete</button>
+            <button onClick={() => handleDeleteItem(itemId)}>Delete</button>
           </div>
         </header>
       </section>
