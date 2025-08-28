@@ -2,11 +2,22 @@
 
 /* ===== Elements ===== */
 /* ===== Classes ===== */
-.formAddBtn {
-  background-color: variables.$body-background-color;
-  border: 1px solid black;
-  &:hover{
-    background-color: variables.$body-background-color-hover;
+.container {
+  place-items: center;
+}
+.friendSearchForm {
+  display: flex;
+  flex-direction: column;
+  // place-self: center;
+  // margin-left: 100px;
+  background-color: rgb(225,225,225);
+  gap: 10px;
+  button {
+    background-color: variables.$body-background-color;
+    border: 1px solid black;
+    &:hover{
+      background-color: variables.$body-background-color-hover;
+    }
   }
 }
 /* ===== Ids ===== */
