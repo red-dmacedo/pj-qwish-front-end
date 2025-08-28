@@ -108,8 +108,8 @@ const App = () => {
             />
             <Route path="/items" element={<ItemList items={items}  />} />
             <Route path="/items/new" element={<ItemForm handleAddItem={handleAddItem} />} />
-            <Route path="/items/:itemId/edit" element={<ItemForm handleUpdateItem={handleUpdateItem} />} />
             <Route path="/items/:itemId" element={<ItemDetails handleDeleteItem={handleDeleteItem} />} />
+            <Route path="/items/:itemId/edit" element={<ItemForm handleUpdateItem={handleUpdateItem} />} />
           </>
         ) : (
           <>

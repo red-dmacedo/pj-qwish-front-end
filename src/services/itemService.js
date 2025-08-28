@@ -22,8 +22,8 @@ const create = async(itemFormData)=> {
       },
       body: JSON.stringify(itemFormData),
     });
-    return res.json();
-  } catch(err){
+    return await res.json();
+  } catch (err) {
     console.log(err);
     throw new Error(err);
   };

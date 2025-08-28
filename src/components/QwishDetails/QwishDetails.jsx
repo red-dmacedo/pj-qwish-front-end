@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router";
 import { useState, useEffect } from "react";
+import styles from "./QwishDetails.module.scss";
 
 import * as qwishService from "../../services/qwishService";
 
@@ -21,7 +22,7 @@ const QwishDetails = (props) => {
   if (!list) return <main>Loading...</main>;
 
   return (
-    <main>
+    <main className={styles.container}>
       <section>
         <h2>{list.name} Qwishlist</h2>
         <p>{list.description}</p>
@@ -34,6 +35,7 @@ const QwishDetails = (props) => {
             timeZone: "UTC",
           })}
         </p>
+        <Link to={`/lists/${listId}/edit`}>Edit List</Link>
         <button onClick={() => props.handleDeleteList(listId)}>Delete List</button>
       </section>
     </main>

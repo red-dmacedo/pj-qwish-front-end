@@ -2,8 +2,9 @@ import { useParams, Link } from 'react-router';
 import { useState, useEffect } from 'react';
 import * as itemService from '../../services/itemService';
 import { useNavigate } from 'react-router';
+import styles from "./ItemDetail.module.scss";
 
-const ItemDetail = () => {
+const ItemDetail = ({handleDeleteItem}) => {
   const [item, setItem] = useState(null);
   const navigate = useNavigate();
   const {itemId} = useParams
@@ -17,13 +18,15 @@ const ItemDetail = () => {
     fetchItem();
   }, [itemId]);
 
-  const handleDeleteItem = async () => {
-    await itemService.remove(itemId);
+  const handleDelete = async () => {
+    await handleDeleteItem(itemId);
     navigate('/items');
   };
 
+  if (!item) return <div>No item selected</div> 
+
   return (
-    <main>
+    <main className={styles.container}>
       <section>
         <header>
           <h2>{item.name}</h2>
@@ -34,7 +37,7 @@ const ItemDetail = () => {
           {item.quantity !== null && <p>Quantity: {item.quantity}</p>}
           <div>
             <Link to={`/items/${itemId}/edit`}>Edit</Link>
-            <button onClick={handleDeleteItem}>Delete</button>
+            <button onClick={handleDelete}>Delete</button>
           </div>
         </header>
       </section>

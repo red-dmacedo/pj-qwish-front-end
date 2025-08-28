@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import * as userService from '../../services/userService';
+import styles from "./Dashboard.module.scss";
 
 const Dashboard = () => {
   const { user } = useContext(UserContext);
@@ -19,7 +20,7 @@ const Dashboard = () => {
   }, [user]);
 
   return (
-    <main>
+    <main className={styles.container}>
       <h1>Welcome, {user.username}</h1>
       <ul>
         {userList.map((user, idx) => (

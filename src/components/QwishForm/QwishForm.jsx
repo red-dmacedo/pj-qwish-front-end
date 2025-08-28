@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import styles from "./QwishForm.module.scss";
 
 import * as qwishService from "../../services/qwishService";
 
@@ -9,7 +10,9 @@ const QwishForm = (props) => {
   useEffect(() => {
     const fetchList = async () => {
       const listData = await qwishService.show(listId);
-      setFormData(listData);
+      setFormData({
+  ...listData, closeDate: listData.closeDate.split("T")[0],
+      });
     };
     if (listId) fetchList();
 
@@ -24,7 +27,7 @@ const QwishForm = (props) => {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    closeDate: new Date(),
+    closeDate: new Date().toISOString().split("T")[0],
   });
 
   const handleChange = (evt) => {
@@ -41,8 +44,8 @@ const QwishForm = (props) => {
   };
 
   return (
-    <main>
-      <h1>Add a New Qwishlist</h1>
+    <main className={styles.container}>
+      <h1>{listId ? "Edit List" : "Add a New Qwishlist"}</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="">Event Name</label>
         <input

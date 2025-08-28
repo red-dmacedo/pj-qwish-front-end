@@ -1,9 +1,8 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router';
-
 import { signUp } from '../../services/authService';
-
 import { UserContext } from '../../contexts/UserContext';
+import styles from "./SignUpForm.module.scss";
 
 const SignUpForm = () => {
   const navigate = useNavigate();
@@ -38,7 +37,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <main>
+    <main className={styles.container}>
       <h1>Sign Up</h1>
       <p>{message}</p>
       <form onSubmit={handleSubmit}>
