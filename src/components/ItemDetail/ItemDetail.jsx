@@ -18,11 +18,6 @@ const ItemDetail = ({handleDeleteItem}) => {
     fetchItem();
   }, [itemId]);
 
-  const handleDelete = async () => {
-    await handleDeleteItem(itemId);
-    navigate('/items');
-  };
-
   if (!item) return <div>No item selected</div> 
 
   return (
@@ -37,7 +32,7 @@ const ItemDetail = ({handleDeleteItem}) => {
           {item.quantity !== null && <p>Quantity: {item.quantity}</p>}
           <div>
             <Link to={`/items/${itemId}/edit`}>Edit</Link>
-            <button onClick={handleDelete}>Delete</button>
+            <button onClick={handleDeleteItem}>Delete</button>
           </div>
         </header>
       </section>
