@@ -1,13 +1,11 @@
 import { useParams, Link } from 'react-router';
 import { useState, useEffect } from 'react';
 import * as itemService from '../../services/itemService';
-import { useNavigate } from 'react-router';
 import styles from "./ItemDetail.module.scss";
 
 const ItemDetail = ({handleDeleteItem}) => {
   const [item, setItem] = useState(null);
-  const navigate = useNavigate();
-  const {itemId} = useParams
+  const {itemId} = useParams();
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -15,7 +13,7 @@ const ItemDetail = ({handleDeleteItem}) => {
       setItem(itemData);
     };
 
-    fetchItem();
+    if (itemId) fetchItem();
   }, [itemId]);
 
   if (!item) return <div>No item selected</div> 
