@@ -18,6 +18,8 @@ import { UserContext } from "./contexts/UserContext";
 import * as qwishService from "./services/qwishService";
 import * as itemService from "./services/itemService";
 
+import styles from "./App.module.scss";
+
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [lists, setLists] = useState([]);
@@ -87,8 +89,10 @@ const App = () => {
   }
 
   return (
+    <main className={styles.container}>
     <>
       <NavBar authenticated={authenticated} handleLogOut={handleLogOut} />
+      <div className={styles.primaryBody}>
       <Routes>
         <Route path="/" element={user ? <Dashboard /> : <Landing />} />
         {user ? (
@@ -118,7 +122,9 @@ const App = () => {
           </>
         )}
       </Routes>
+    </div>
     </>
+    </main>
   );
 };
 
