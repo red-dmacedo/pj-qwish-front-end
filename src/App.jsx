@@ -18,13 +18,11 @@ import styles from "./App.module.scss";
 
 import * as qwishService from "./services/qwishService";
 import * as itemService from "./services/itemService";
-import * as userService from "./services/userService";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [lists, setLists] = useState([]);
   const [items, setItems] = useState([]);
-  const [users, setUsers] = useState([]);
 
   const { user } = useContext(UserContext);
 
@@ -74,12 +72,7 @@ const App = () => {
       setItems(itemData);
     };
 
-    const fetchAllUsers = async() => {
-      const userData = await userService.index();
-      setUsers(userData);
-    };
-
-    if (user) fetchAllItems(), fetchAllLists(), fetchAllUsers();
+    if (user) fetchAllItems(), fetchAllLists();
   }, [user]);
 
   const handleDeleteList = async (listId) => {
@@ -112,7 +105,7 @@ const App = () => {
             <Route path="/items/:itemId" element={<ItemDetails handleDeleteItem={handleDeleteItem} />} />
             <Route path="/items/:itemId/edit" element={<ItemForm handleUpdateItem={handleUpdateItem} />} />
 
-            <Route path="/users" element={<Users users={users} />} />
+            <Route path="/users" element={<Users />} />
           </>
         ) : (
           <>
