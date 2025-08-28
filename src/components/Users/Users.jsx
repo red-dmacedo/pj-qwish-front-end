@@ -45,14 +45,14 @@ const Users = (props) => {
   return (
     <div className={styles.container}>
       <h1>Find Friends</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.friendSearchForm}>
         <input type="text" placeholder='Search Username' onChange={handleSearch} />
         <select>
           {users.map((usr, idx) => (
             <option key={idx} value={usr._id}>{usr.username}</option>
           ))}
         </select>
-        <button type='submit'>Add</button>
+        <button type='submit' className={styles.formAddBtn}>Add</button>
       </form>
     </div>
   );

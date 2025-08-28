@@ -2,4 +2,11 @@
 
 /* ===== Elements ===== */
 /* ===== Classes ===== */
+.formAddBtn {
+  background-color: variables.$body-background-color;
+  border: 1px solid black;
+  &:hover{
+    background-color: variables.$body-background-color-hover;
+  }
+}
 /* ===== Ids ===== */
