@@ -42,7 +42,7 @@ const App = () => {
   }
 
   const handleDeleteItem = async (itemId) => {
-    const deletedItem = await itemService.deleteItem(itemId);
+    const deletedItem = await itemService.remove(itemId);
     setItems(items.filter((item) => item._id !== deletedItem._id));
     navigate('/items');
   }

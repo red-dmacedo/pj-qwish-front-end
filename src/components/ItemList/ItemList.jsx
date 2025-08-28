@@ -1,43 +1,71 @@
 import { useState, useEffect } from "react";
-import { index } from "../../services/itemService";
+import * as itemService from "../../services/itemService";
 import ItemDetails from "../ItemDetail/ItemDetail";
 import ItemForm from "../ItemForm/ItemForm";
+import { useNavigate } from "react-router";
+import { Link } from "react-router";
 import styles from "./ItemList.module.scss";
 
-const ItemList = ({handleAddItem, handleDeleteItem}) => {
+const ItemList = ({ handleAddItem }) => {
   const [items, setItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
+  const navigate = useNavigate();
 
-useEffect(() => {
-  const fetchItems = async () => {
-    try {
-      const fetchedItems = await index();
-      setItems(fetchedItems);
-    } catch (err) {
-      console.log(err.message);
-    }
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const fetchedItems = await itemService.index();
+        setItems(fetchedItems);
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+    fetchItems();
+  }, []);
+
+  if (!items.length) return <div>No Items Yet!</div>;
+
+  const handleEditItem = (item) => {
+    selectedItem(item);
   };
-  fetchItems();
-}, []);
 
-// const handleAddItem = (newItem) => {
-//   setItems((prevItems) => [...prevItems, newItem]);
-// };
+  const handleUpdateItem = async (itemFormData) => {
+    await itemService.update(selectedItem._id, itemFormData);
+    const updatedItems = await itemService.index();
+    setItems(updatedItems);
+    setSelectedItem(null);
+    navigate("/items");
+  };
 
-if (!items.length) return <div>No Items Yet!</div>;
+  const handleDeleteItem = async (itemId) => {
+    await itemService.remove(itemId);
+    const updatedItems = await itemService.index();
+    setItems(updatedItems);
+    navigate("/items");
+  }
 
-return (
+  return (
     <div className={styles.container}>
       <h1>Items</h1>
       <ul>
-      {items.map((item, idx) => (
-        <li key={idx} onClick={() => setSelectedItem(item._id)}>
-          {item.name}
-        </li>
-      ))}
+        {items.map((item) => (
+          <li key={item._id} onClick={() => handleEditItem(item)}>
+            <Link to={`/items/${item._id}`}>{item.name}</Link>
+          </li>
+        ))}
       </ul>
-      {selectedItem && <ItemDetails itemId={selectedItem} handleDeleteItem={handleDeleteItem} />}
-      <ItemForm handleAddItem={handleAddItem} />
+      {selectedItem && (
+        <ItemDetails
+          itemId={selectedItem._id}
+          handleDeleteItem={handleDeleteItem}
+          onDelete={() => handleDeleteItem(selectedItem._id)}
+        />
+      )}
+      <ItemForm
+        handleAddItem={handleAddItem}
+        initialValues={selectedItem}
+        onUpdate={handleUpdateItem}
+      />
     </div>
   );
 };
