@@ -26,7 +26,7 @@ const ItemList = ({ handleAddItem }) => {
   if (!items.length) return <div>No Items Yet!</div>;
 
   const handleEditItem = (item) => {
-    selectedItem(item);
+    setSelectedItem(item);
   };
 
   const handleUpdateItem = async (itemFormData) => {
@@ -38,9 +38,8 @@ const ItemList = ({ handleAddItem }) => {
   };
 
   const handleDeleteItem = async (itemId) => {
-    await itemService.remove(itemId);
-    const updatedItems = await itemService.index();
-    setItems(updatedItems);
+    const deletedItem = await itemService.remove(itemId);
+    setItems(items.filter(el => el._id !== deletedItem._id));
     navigate("/items");
   }
 
