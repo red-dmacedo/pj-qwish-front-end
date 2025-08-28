@@ -36,7 +36,7 @@ const ItemForm = ({ existingItem, handleAddItem }) => {
     }
   };
   
-  //other contributor additions
+  // other contributor additions 
   function showSuggestions() {
     walmartSearch(search).then((e) => setSearchResults(e.organic_results));
   }
@@ -101,7 +101,7 @@ const ItemForm = ({ existingItem, handleAddItem }) => {
         </button>
       </form>
 
-      //other contributor additions
+      {/* //other contributor additions */}
       <div>
         <input
           value={search}
