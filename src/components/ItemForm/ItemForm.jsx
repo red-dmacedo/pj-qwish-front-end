@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import * as itemService from "../../services/itemService";
 import { search as walmartSearch } from "../../services/walmartService";
 import styles from "./ItemForm.module.scss";
 
-const ItemForm = ({ existingItem, handleAddItem }) => {
+const ItemForm = ({ existingItem, handleAddItem, handleUpdateItem }) => {
   const [name, setName] = useState(existingItem?.name || null);
   const [img, setImg] = useState(existingItem?.img || null);
   const [description, setDescription] = useState(existingItem?.description || null);
@@ -27,11 +26,10 @@ const ItemForm = ({ existingItem, handleAddItem }) => {
     };
 
     if (existingItem) {
-      await itemService.update(existingItem._id, itemData);
+      await handleUpdateItem(existingItem._id, itemData);
       navigate("/items");
     } else {
-      const createdItem = await itemService.create(itemData);
-      await handleAddItem(createdItem);
+      await handleAddItem(itemData);
       navigate("/items");
     }
   };
