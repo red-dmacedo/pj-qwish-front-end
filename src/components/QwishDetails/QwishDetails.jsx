@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router";
+import { useParams, Link, useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import styles from "./QwishDetails.module.scss";
 
@@ -10,6 +10,7 @@ const QwishDetails = (props) => {
 //   const { user } = useContext(UserContext);
   const [list, setList] = useState(null);
   const { listId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchList = async () => {
@@ -20,6 +21,10 @@ const QwishDetails = (props) => {
   }, [listId]);
 
   if (!list) return <main>Loading...</main>;
+
+    const handleAddItemClick = () => {
+    navigate(`/items/new/${listId}`);
+  };
 
   return (
     <main className={styles.container}>
@@ -37,6 +42,7 @@ const QwishDetails = (props) => {
         </p>
         <Link to={`/lists/${listId}/edit`}>Edit List</Link>
         <button onClick={() => props.handleDeleteList(listId)}>Delete List</button>
+        <button onClick={handleAddItemClick}>Add Item</button>
       </section>
     </main>
   );
