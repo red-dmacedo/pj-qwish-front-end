@@ -29,7 +29,7 @@ const QwishDetails = (props) => {
   return (
     <main className={styles.container}>
       <section>
-        <h2>{list.name} Qwishlist</h2>
+        <h2 className={styles.dynapuff}>{list.name} Qwishlist</h2>
         <p>{list.description}</p>
         <p>
           Close Date:{" "}

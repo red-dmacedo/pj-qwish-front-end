@@ -1,4 +1,5 @@
 @use './styles/variables.module.scss';
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
 
 /* ===== Elements ===== */
 :root {
@@ -20,10 +21,15 @@ a {
   font-weight: 500;
   color: variables.$hyperlink-color;
   text-decoration: inherit;
+  cursor: pointer;
 }
 
 a:hover {
   color: variables.$hyperlink-color-hover;
+}
+
+Link {
+  cursor: pointer;
 }
 
 body {
@@ -63,7 +69,7 @@ button:focus-visible {
     background-color: #ffffff;
   }
   a:hover {
-    font-weight: bold;
+    cursor: pointer;
   }
   button {
     background-color: #f9f9f9;
@@ -100,4 +106,14 @@ table {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.dynapuff{
+  font-family: "DynaPuff", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5em;
+  font-variation-settings:
+    "wdth" 100;
+  color: rgb(49, 106, 158);
+}
 /* ===== Ids ===== */

@@ -4,7 +4,7 @@ import styles from "./QwishList.module.scss";
 const QwishList = (props) => {
   return (
     <div className={styles.container}>
-    <h2>Qwishlists</h2>
+    <h2 className={styles.dynapuff}>Qwishlists</h2>
       {props.lists.map((list) => (
         <article key={list._id}>
           <header>
