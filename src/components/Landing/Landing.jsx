@@ -6,9 +6,11 @@ const Landing = () => {
       <h1 className={styles.dynapuffH1}>Qwish</h1>
       <h2>Making gift-giving easy, fun, and stress-free.</h2>
 
+{/* Why use it? Section */}
       <h2 className={styles.dynapuffH1}>Why use it?</h2>
 
       <div className={styles.why}>
+        <div className={styles.whyContainer}>
       <div className={styles.container}>
       <h1 className={styles.dynapuffH1}>1.</h1>
       <div className={styles.whyGrid}>
@@ -16,6 +18,8 @@ const Landing = () => {
       Share exactly what you want. No more guessing needed!</p>
       </div>
       </div>
+
+      <div></div>
 
       <div className={styles.container}>
       <h1 className={styles.dynapuffH1}>2.</h1>
@@ -33,6 +37,8 @@ const Landing = () => {
       </div>
       </div>
 
+       <div></div>
+
       <div className={styles.container}>
       <h1 className={styles.dynapuffH1}>4.</h1>
       <div className={styles.whyGrid}>
@@ -49,6 +55,8 @@ const Landing = () => {
       </div>
       </div>
 
+       <div></div>
+
       <div className={styles.container}>
       <h1 className={styles.dynapuffH1}>6.</h1>
       <div className={styles.whyGrid}>
@@ -56,18 +64,21 @@ const Landing = () => {
       Reduce waste from unwanted gifts.</p>
       </div>
       </div>
+        </div>
       </div>
 
       <h2 className={styles.dynapuffH1}>How it Works</h2>
       <p>(3 step visual with screenshots)</p>
-      {/* <p>1. Create your wishlist <br />
-      2. Add items from anywhere <br />
-      3. Share with friends and family to purchase.</p> */}
+      <ol>
+        <li>Create your wishlist</li>
+        <li>Add items from anywhere</li>
+        <li>Share with friends and family to purchase</li>
+      </ol>
 
       <h2 className={styles.dynapuff}>Subscribe to our Newsletter</h2>
       <form action="">
         <input type="email" 
-        value="Your email"/>
+        placeholder="Your email"/>
         <button>Subscribe</button>
       </form>
     </main>
