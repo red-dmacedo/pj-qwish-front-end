@@ -40,7 +40,8 @@ const App = () => {
   const handleAddItem = async (itemData) => {
     const newItem = await itemService.create(itemData);
     if (newItem) {
-      setItems([newItem, ...items]);
+      setItems((items) => [newItem, ...items]);
+      // await itemService.addListItem(newItem);
       navigate(`/lists/${itemData.listId}`);
     }
   }

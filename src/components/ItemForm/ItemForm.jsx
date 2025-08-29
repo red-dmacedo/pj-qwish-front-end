@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router"; 
 import { search as walmartSearch } from "../../services/walmartService";
 import styles from "./ItemForm.module.scss";
 
 const ItemForm = ({ handleAddItem }) => {
+  const [productId, setProductId] = useState("");
   const [name, setName] = useState("");
   const [img, setImg] = useState("");
   const [description, setDescription] = useState("");
@@ -19,32 +20,30 @@ const ItemForm = ({ handleAddItem }) => {
     e.preventDefault();
 
     const itemData = {
+      product_id: productId,
       name,
       img,
       description,
       price: price ? Number(price) : null,
       quantity: quantity ? Number(quantity) : null,
-      listId,
+      listId, 
     };
 
-    await handleAddItem(itemData);
-    navigate(`/lists/${listId}`);
+    const success = await handleAddItem(itemData);
+
+    if (success) {
+      navigate(`/lists/${listId}`);
+    } else {
+      console.error("Failed to add item");
+    }
   };
 
-  //   if (existingItem) {
-  //     await handleUpdateItem(existingItem._id, itemData);
-  //     navigate("/items");
-  //   } else {
-  //     await handleAddItem(itemData);
-  //     navigate("/items");
-  //   }
-  // };
-  
   const showSuggestions = () => {
     walmartSearch(search).then((e) => setSearchResults(e.organic_results));
   };
 
   const handleSelect = (item) => {
+    setProductId(item.product_id);
     setName(item.title);
     setImg(item.thumbnail);
     setDescription(item.link);
@@ -57,6 +56,15 @@ const ItemForm = ({ handleAddItem }) => {
   return (
     <section className={styles.container} style={{ display: "flex", gap: "90px" }}>
       <form onSubmit={handleSubmit}>
+        <div>
+          <label>Product Id: </label>
+          <input
+            type="text"
+            value={productId}
+            onChange={(e) => setProductId(e.target.value)}
+            required
+          />
+        </div>
         <div>
           <label>Name: </label>
           <input
@@ -101,18 +109,18 @@ const ItemForm = ({ handleAddItem }) => {
         <button type="submit">Add Item</button>
       </form>
 
-      {/* //other contributor additions */}
+      {/* Search for Walmart items */}
       <div>
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           type="search"
-          placeholder="search product on walmart"
+          placeholder="Search product on Walmart"
         />
         <button onClick={showSuggestions}>Search</button>
         <div className="flex-container">
           {searchResults.map((item, idx) => (
-            <div key={idx} className="walmart_item" >
+            <div key={idx} className="walmart_item">
               <div>
                 <h3>{item.title}</h3>
                 <h4>{item.price}</h4>
@@ -123,7 +131,7 @@ const ItemForm = ({ handleAddItem }) => {
                   Walmart Link
                 </a>
                 <br />
-                <button onClick={()=>handleSelect(item)}>Select</button>
+                <button onClick={() => handleSelect(item)}>Select</button>
               </div>
             </div>
           ))}
