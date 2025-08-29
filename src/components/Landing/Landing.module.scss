@@ -10,12 +10,19 @@
 .why {
   background-color: rgb(246, 243, 238);
   width: 100%;
-  place-items: center;
-  padding: 1.5rem 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  justify-content: center;
 }
 
+.whyContainer {
+  width: 100%;
+  justify-content: center;
+  max-width: 600px;
+  place-items: center;
+  padding: 2rem 0;
+  display: grid;
+  grid-template-columns: 1fr 20px 1fr;
+}
 .whyGrid {
   background-color: white;
   width: 300px;
