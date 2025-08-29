@@ -27,8 +27,12 @@ const Landing = () => {
       2. Add items from anywhere <br />
       3. Share with friends and family to purchase.</p>
 
-      <h2>Newsletter Signup</h2>
-      <p>(Newsletter signup form)</p>
+      <h2>Subscribe to our Newsletter</h2>
+      <form action="">
+        <input type="email" 
+        value="Your email"/>
+        <button>Subscribe</button>
+      </form>
     </main>
   );
 };
