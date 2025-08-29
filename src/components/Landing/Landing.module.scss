@@ -4,8 +4,50 @@
 /* ===== Classes ===== */
 .container {
   place-items: center;
+  margin: 50px;
+
+  div {
+    background-color: cyan;
+    width: 100%;
+    place-items: center;
+  }
+
   h1 {
     place-self: center;
   }
 }
+
+.cardList {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  margin: 10px;
+  list-style: none;
+  gap: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgb(200,200,200);
+
+  .card {
+    // display: flex;
+    flex: 1;
+    place-items: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: variables.$body-background-color;
+
+    h4 {
+      margin: 10px;
+    }
+
+    p {
+      margin: 5px 10px;
+    }
+
+    &:hover {
+      background-color: rgb(245, 245, 245);
+    }
+  }
+}
+
 /* ===== Ids ===== */

@@ -45,23 +45,23 @@ const QwishForm = (props) => {
 
   return (
     <main className={styles.container}>
-      <h1>{listId ? "Edit List" : "Add a New Qwishlist"}</h1>
+      <h2>{listId ? "Edit List" : "Add a New Qwishlist"}</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="">Event Name</label>
+      <label htmlFor="">Event Name</label>
         <input
           required
           type="text"
           name="name"
           value={formData.name}
           onChange={handleChange}
-        />
+          />
         <label htmlFor="">Event Description</label>
         <textarea
           type="text"
           value={formData.description}
           name="description"
           onChange={handleChange}
-        />
+          />
         <label htmlFor="">List Closing Date</label>
         <input
           type="date"

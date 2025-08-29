@@ -8,11 +8,11 @@ const Dashboard = () => {
 
   return (
     <main className={styles.container}>
-      <h1>Welcome, {user.firstName}!</h1>
+      <h2>Welcome, {user.firstName}!</h2>
 
       <Link to={`/lists/new`} className={styles.linkToBtn}>Create a New List</Link>
 
-      <h1>My Qwishlists</h1>
+      <h2>My Qwishlists</h2>
 
     </main>
   );
