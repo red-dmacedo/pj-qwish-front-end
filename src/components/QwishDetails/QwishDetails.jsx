@@ -48,9 +48,9 @@ const QwishDetails = (props) => {
         <h3>Items:</h3>
         {list.items && list.items.length > 0 ? (
           <ul>
-            {list.items.map((item) => (
-              <li key={item._id}>
-                <Link to={`/items/${item._id}`}>{item.name}</Link>
+            {list.items.map((item, idx) => (
+              <li key={idx}>
+                <Link to={`/items/${item._id}`}>{JSON.stringify(item)}</Link>
               </li>
             ))}
           </ul>

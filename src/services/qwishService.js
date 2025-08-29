@@ -1,20 +1,22 @@
-const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/lists`;
+const BACKEND_URL = import.meta.env.VITE_BACK_END_SERVER_URL;
+const LISTS_URL = `${BACKEND_URL}/lists`;
+const ITEMS_URL = `${BACKEND_URL}/items`;
 
 const index = async () => {
-  try{
-    const res = await fetch(BASE_URL, {
+  try {
+    const res = await fetch(LISTS_URL, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
     return await res.json();
-  } catch(err){
+  } catch (err) {
     console.log(err.message);
     throw new Error(err);
   };
 };
 
-const create = async(listFormData)=> {
-  try{
-    const res = await fetch(BASE_URL, {
+const create = async (listFormData) => {
+  try {
+    const res = await fetch(LISTS_URL, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -23,29 +25,49 @@ const create = async(listFormData)=> {
       body: JSON.stringify(listFormData),
     });
     return res.json();
-  } catch(err){
+  } catch (err) {
     console.log(err);
     throw new Error(err);
   };
 };
 
-const show = async(listId)=> {
-  try{
-    const res = await fetch(`${BASE_URL}/${listId}`, {
+const show = async (listId) => {
+  try {
+    const listRes = await fetch(`${LISTS_URL}/${listId}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     });
-    return await res.json();
-  } catch(err){
+
+    const list = await listRes.json()
+
+    const itemRes = await fetch(ITEMS_URL, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ itemIDs: list.items.map(el => el._id) }),
+    });
+
+    const items = await itemRes.json();
+
+    for (let i = 0; i > list.items.length; i++) {
+      const itemA = list.items[i];
+      const itemB = items[i];
+      list.items[i] = { ...itemA, ...itemB };
+    };
+
+    return list;
+  } catch (err) {
     console.log(err);
     throw new Error(err);
   };
 };
 
-const update = async(listId, listFormData)=> {
-  try{
-    const res = await fetch(`${BASE_URL}/${listId}`, {
+const update = async (listId, listFormData) => {
+  try {
+    const res = await fetch(`${LISTS_URL}/${listId}`, {
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -54,22 +76,22 @@ const update = async(listId, listFormData)=> {
       body: JSON.stringify(listFormData),
     });
     return await res.json();
-  } catch(err){
+  } catch (err) {
     console.log(err);
     throw new Error(err);
   };
 };
 
-const remove = async(listId)=> {
-  try{
-    const res = await fetch(`${BASE_URL}/${listId}`, {
+const remove = async (listId) => {
+  try {
+    const res = await fetch(`${LISTS_URL}/${listId}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     });
     return await res.json();
-  } catch(err){
+  } catch (err) {
     console.log(err);
     throw new Error(err);
   };
