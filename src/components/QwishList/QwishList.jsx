@@ -3,8 +3,10 @@ import styles from "./QwishList.module.scss";
 
 const QwishList = (props) => {
   return (
+    <>
     <div className={styles.container}>
-    <h2 className={styles.dynapuff}>Qwishlists</h2>
+    <h2 className={styles.dynapuffH1}>Qwishlists</h2>
+    <div className={`${styles.container} ${styles.listGrid}`}>
       {props.lists.map((list) => (
         <article key={list._id}>
           <header>
@@ -14,6 +16,8 @@ const QwishList = (props) => {
         </article>
       ))}
     </div>
+      </div>
+      </>
   );
 };
 
