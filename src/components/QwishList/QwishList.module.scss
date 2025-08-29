@@ -4,16 +4,11 @@
 /* ===== Elements ===== */
 /* ===== Classes ===== */
 .container {
-  gap: 14px;
-  width: 100%;
-  display: grid;
-  padding: 21px;
-  grid-template-columns: repeat(1, 1fr);
   place-items: center;
 }
 
 .container article {
-  width: 300px;
+  width: 250px;
   height: 150px;
   padding: 14px 21px;
   border-radius: 5px;
@@ -22,6 +17,17 @@
   box-shadow: -1px 5px 19px -5px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: -1px 5px 19px -5px rgba(0, 0, 0, 0.25);
   -webkit-box-shadow: -1px 5px 19px -5px rgba(0, 0, 0, 0.25);
+}
+
+.listGrid {
+  width: 100%;
+  max-width: 620px;
+  display: grid;
+  padding: 21px;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 14px;
+  row-gap: 25px;
+  margin: 0 auto;
 }
 
 /* ===== Ids ===== */

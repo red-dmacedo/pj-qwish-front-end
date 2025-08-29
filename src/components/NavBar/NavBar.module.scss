@@ -2,7 +2,6 @@
 @use '../../Main.module.scss';
 
 /* ===== Elements ===== */
-/* ===== Classes ===== */
 nav {
     top: 0;
     z-index: 1;
@@ -29,6 +28,12 @@ nav {
         color: black;
     }
 }
+
+/* ===== Classes ===== */
+.container .dynapuff {
+  margin-left: 1.1rem;
+}
+
 /* ===== Ids ===== */
 #root {
     padding-top: 3em;
