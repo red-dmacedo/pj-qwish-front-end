@@ -52,7 +52,7 @@ const App = () => {
   const handleDeleteItem = async (itemId, listId) => {
     const deletedItem = await itemService.remove(itemId, listId);
     setItems(items.filter((item) => item._id !== deletedItem._id));
-    navigate('/items');
+    navigate(`/lists/${listId}`);
   }
 
   const handleUpdateItem = async (itemId, itemData) => {
@@ -99,10 +99,16 @@ const App = () => {
   return (
     <main className={styles.container}>
       <>
-        <NavBar authenticated={authenticated} handleLogOut={handleLogOut} />
+        <NavBar
+          authenticated={authenticated}
+          handleLogOut={handleLogOut}
+        />
         <div className={styles.primaryBody}>
           <Routes>
-            <Route path="/" element={user ? <Dashboard /> : <Landing />} />
+            <Route
+              path="/"
+              element={user ? <Dashboard /> : <Landing />}
+            />
             {user ? (
               <>
                 <Route
@@ -130,6 +136,13 @@ const App = () => {
                   />}
                 />
                 <Route
+                  path="/lists/:listId/:itemId"
+                  element={<ItemDetails
+                    handleDeleteItem={handleDeleteItem}
+                    setSelectedItem={setSelectedItem}
+                  />}
+                />
+                <Route
                   path="/items"
                   element={<ItemList
                     items={items}
@@ -140,13 +153,6 @@ const App = () => {
                   path="/items/new/:listId"
                   element={<ItemForm
                     handleAddItem={handleAddItem}
-                  />}
-                />
-                <Route
-                  path="/lists/:listId/:itemId"
-                  element={<ItemDetails
-                    handleDeleteItem={handleDeleteItem}
-                    setSelectedItem={setSelectedItem}
                   />}
                 />
                 <Route

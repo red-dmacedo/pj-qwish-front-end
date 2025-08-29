@@ -50,7 +50,7 @@ const QwishDetails = (props) => {
           <ul>
             {list.items.map((item, idx) => (
               <li key={idx}>
-                <Link to={`/items/${item._id}`}>{item.name}</Link>
+                <Link to={`/lists/${listId}/${item._id}`}>{item.name}</Link>
               </li>
             ))}
           </ul>
