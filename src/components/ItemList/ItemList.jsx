@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router";
 import styles from "./ItemList.module.scss";
 
-const ItemList = ({ handleAddItem }) => {
+const ItemList = ({ handleAddItem, handleDeleteItem }) => {
   const [items, setItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const navigate = useNavigate();
@@ -37,11 +37,11 @@ const ItemList = ({ handleAddItem }) => {
     navigate("/items");
   };
 
-  const handleDeleteItem = async (itemId) => {
-    const deletedItem = await itemService.remove(itemId);
-    setItems(items.filter(el => el._id !== deletedItem._id));
-    navigate("/items");
-  }
+  // const handleDeleteItem = async (itemId) => {
+  //   const deletedItem = await itemService.remove(itemId);
+  //   setItems(items.filter(el => el._id !== deletedItem._id));
+  //   navigate("/lists");
+  // }
 
   return (
     <div className={styles.container}>

@@ -73,9 +73,9 @@ const update = async (itemId, itemFormData) => {
   };
 };
 
-const remove = async (itemId) => {
+const remove = async (itemId, listId) => {
   try {
-    const res = await fetch(`${BASE_URL}/${itemId}`, {
+    const res = await fetch(`${LISTS_URL}/${listId}/${itemId}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });

@@ -49,8 +49,8 @@ const App = () => {
     }
   }
 
-  const handleDeleteItem = async (itemId) => {
-    const deletedItem = await itemService.remove(itemId);
+  const handleDeleteItem = async (itemId, listId) => {
+    const deletedItem = await itemService.remove(itemId, listId);
     setItems(items.filter((item) => item._id !== deletedItem._id));
     navigate('/items');
   }
@@ -105,48 +105,78 @@ const App = () => {
             <Route path="/" element={user ? <Dashboard /> : <Landing />} />
             {user ? (
               <>
-                <Route path="/lists" element={<QwishList lists={lists} />} />
+                <Route
+                  path="/lists"
+                  element={<QwishList
+                    lists={lists}
+                  />}
+                />
                 <Route
                   path="/lists/:listId"
-                  element={<QwishDetails handleDeleteList={handleDeleteList} />}
+                  element={<QwishDetails
+                    handleDeleteList={handleDeleteList}
+                  />}
                 />
                 <Route
                   path="/lists/new"
-                  element={<QwishForm handleAddList={handleAddList} />}
+                  element={<QwishForm
+                    handleAddList={handleAddList}
+                  />}
                 />
                 <Route
                   path="lists/:listId/edit"
-                  element={<QwishForm handleUpdateList={handleUpdateList} />}
-                />
-                <Route
-                  path="/items/new/:listId"
-                  element={<ItemForm handleAddItem={handleAddItem} />}
+                  element={<QwishForm
+                    handleUpdateList={handleUpdateList}
+                  />}
                 />
                 <Route
                   path="/items"
-                  element={<ItemList items={items} />}
+                  element={<ItemList
+                    items={items}
+                    handleDeleteItem={handleDeleteItem}
+                  />}
                 />
                 <Route
-                  path="/items/:itemId"
-                  element={<ItemDetails handleDeleteItem={handleDeleteItem}
-                    setSelectedItem={setSelectedItem} />}
+                  path="/items/new/:listId"
+                  element={<ItemForm
+                    handleAddItem={handleAddItem}
+                  />}
+                />
+                <Route
+                  path="/lists/:listId/:itemId"
+                  element={<ItemDetails
+                    handleDeleteItem={handleDeleteItem}
+                    setSelectedItem={setSelectedItem}
+                  />}
                 />
                 <Route
                   path="/items/:itemId/edit"
-                  element={<ItemForm handleAddItem={handleAddItem}
-                    handleUpdateItem={handleUpdateItem} selectedItem={selectedItem} />}
+                  element={<ItemForm
+                    handleAddItem={handleAddItem}
+                    handleUpdateItem={handleUpdateItem}
+                    selectedItem={selectedItem}
+                  />}
                 />
-                <Route path="/users" element={<Users />} />
+                <Route
+                  path="/users"
+                  element={<Users />}
+                />
               </>
             ) : (
               <>
-                <Route path="/sign-up" element={<SignUpForm />} />
-                <Route path="/sign-in" element={<SignInForm />} />
+                <Route
+                  path="/sign-up"
+                  element={<SignUpForm />}
+                />
+                <Route
+                  path="/sign-in"
+                  element={<SignInForm />}
+                />
               </>
             )}
           </Routes>
         </div>
-          <Footer />
+        <Footer />
       </>
     </main>
   );
