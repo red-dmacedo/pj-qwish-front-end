@@ -41,7 +41,7 @@ const App = () => {
     const newItem = await itemService.create(itemData);
     if (newItem) {
       setItems([newItem, ...items]);
-      window.location.reload();
+      navigate(`/lists/${itemData.listId}`);
     }
   }
 
