@@ -3,10 +3,10 @@ import styles from "./Landing.module.scss";
 const Landing = () => {
   return (
     <main className={styles.container}>
-      <h1>Qwish</h1>
+      <h1 className={styles.dynapuff}>Qwish</h1>
       <h2>Making gift-giving easy, fun, and stress-free.</h2>
 
-      <h2>Why use it?</h2>
+      <h2 className={styles.dynapuff}>Why use it?</h2>
       <p><b>No more awkward gifts</b><br />
       Share exactly what you want. No more guessing needed!</p>
 
@@ -21,13 +21,13 @@ const Landing = () => {
       <p><b>Better for the environment</b><br />
       Reduce waste from unwanted gifts.</p>
 
-      <h2>How it Works</h2>
+      <h2 className={styles.dynapuff}>How it Works</h2>
       <p>(3 step visual with screenshots)</p>
       <p>1. Create your wishlist <br />
       2. Add items from anywhere <br />
       3. Share with friends and family to purchase.</p>
 
-      <h2>Subscribe to our Newsletter</h2>
+      <h2 className={styles.dynapuff}>Subscribe to our Newsletter</h2>
       <form action="">
         <input type="email" 
         value="Your email"/>

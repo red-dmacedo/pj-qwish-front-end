@@ -14,6 +14,7 @@ const NavBar = () => {
 
     return (
         <nav className={styles.container}>
+        <Link to='/' className={styles.dynapuff}>Qwish</Link>
         { user ? (
             <ul>
             <li><Link to='/'>Home</Link></li>
