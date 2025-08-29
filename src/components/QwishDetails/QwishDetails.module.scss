@@ -1,5 +1,9 @@
 @use '../../styles/variables.module.scss';
+@use '../../Main.module.scss';
 
 /* ===== Elements ===== */
 /* ===== Classes ===== */
+.container {
+    place-items: center;
+}
 /* ===== Ids ===== */

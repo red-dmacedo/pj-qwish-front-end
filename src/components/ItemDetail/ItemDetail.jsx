@@ -28,7 +28,7 @@ const ItemDetail = ({handleDeleteItem}) => {
           <p>Price: ${item.price}</p>
           {item.quantity !== null && <p>Quantity: {item.quantity}</p>}
           <div>
-            <Link to={`/items/${itemId}/edit`}>Edit</Link>
+            <Link to={`/items/${itemId}/edit`} className={styles.linkToBtn}>Edit</Link>
             <button onClick={() => handleDeleteItem(itemId)}>Delete</button>
           </div>
         </header>
