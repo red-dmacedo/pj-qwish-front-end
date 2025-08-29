@@ -60,9 +60,9 @@ const Landing = () => {
 
       <h2 className={styles.dynapuffH1}>How it Works</h2>
       <p>(3 step visual with screenshots)</p>
-      <p>1. Create your wishlist <br />
+      {/* <p>1. Create your wishlist <br />
       2. Add items from anywhere <br />
-      3. Share with friends and family to purchase.</p>
+      3. Share with friends and family to purchase.</p> */}
 
       <h2 className={styles.dynapuff}>Subscribe to our Newsletter</h2>
       <form action="">

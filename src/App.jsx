@@ -43,6 +43,8 @@ const App = () => {
       setItems((items) => [newItem, ...items]);
       await itemService.addListItem(newItem, itemData.listId);
       navigate(`/lists/${itemData.listId}`);
+    } else {
+      throw new Error('Failed to add item');
     }
   }
 

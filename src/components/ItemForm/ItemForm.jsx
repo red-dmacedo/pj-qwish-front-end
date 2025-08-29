@@ -31,11 +31,11 @@ const ItemForm = ({ handleAddItem }) => {
 
     const success = await handleAddItem(itemData);
 
-    if (success) {
-      navigate(`/lists/${listId}`);
-    } else {
-      console.error("Failed to add item");
-    }
+    // if (success) {
+    //   navigate(`/lists/${listId}`);
+    // } else {
+    //   console.error("Failed to add item");
+    // }
   };
 
   const showSuggestions = () => {

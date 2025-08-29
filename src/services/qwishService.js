@@ -39,23 +39,23 @@ const show = async (listId) => {
       },
     });
 
-    const list = await listRes.json()
+    const list = await listRes.json();
 
-    const itemRes = await fetch(ITEMS_URL, {
-      method: 'GET',
+    const itemRes = await fetch(`${ITEMS_URL}/many`, {
+      method: 'POST',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ itemIDs: list.items.map(el => el._id) }),
+      body: JSON.stringify({ itemIds: list.items.map(el => el._id) }),
     });
 
     const items = await itemRes.json();
 
-    for (let i = 0; i > list.items.length; i++) {
-      const itemA = list.items[i];
-      const itemB = items[i];
-      list.items[i] = { ...itemA, ...itemB };
+    for (let [idx, itm] of list.items.entries()) {
+      const xItem = items[idx];
+      itm = { ...xItem, ...itm };
+      list.items[idx] = itm;
     };
 
     return list;
