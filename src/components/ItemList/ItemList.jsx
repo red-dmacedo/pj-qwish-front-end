@@ -61,8 +61,8 @@ const ItemList = ({ handleAddItem }) => {
         />
       )}
       <ItemForm
+        existingItem={selectedItem}
         handleAddItem={handleAddItem}
-        initialValues={selectedItem}
         onUpdate={handleUpdateItem}
       />
     </div>

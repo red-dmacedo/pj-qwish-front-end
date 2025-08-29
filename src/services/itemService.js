@@ -1,4 +1,5 @@
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/items`;
+const LISTS_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/lists`;
 
 const index = async () => {
   try {
@@ -21,6 +22,23 @@ const create = async(itemFormData)=> {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(itemFormData),
+    });
+    return await res.json();
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  };
+};
+
+const addListItem = async(item)=> {
+  try{
+    const res = await fetch(LISTS_URL, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(item),
     });
     return await res.json();
   } catch (err) {
@@ -71,6 +89,7 @@ const remove = async (itemId) => {
 export {
   index,
   create,
+  addListItem,
   show,
   update,
   remove,

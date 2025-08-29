@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router";
+import { useParams, Link, useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import styles from "./QwishDetails.module.scss";
 
@@ -7,9 +7,10 @@ import * as qwishService from "../../services/qwishService";
 import { UserContext } from "../../contexts/UserContext";
 
 const QwishDetails = (props) => {
-//   const { user } = useContext(UserContext);
+  //   const { user } = useContext(UserContext);
   const [list, setList] = useState(null);
   const { listId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchList = async () => {
@@ -20,6 +21,10 @@ const QwishDetails = (props) => {
   }, [listId]);
 
   if (!list) return <main>Loading...</main>;
+
+  const handleAddItem = () => {
+    navigate(`/items/new/${listId}`);
+  };
 
   return (
     <main className={styles.container}>
@@ -37,6 +42,21 @@ const QwishDetails = (props) => {
         </p>
         <Link to={`/lists/${listId}/edit`} className={styles.linkToBtn}>Edit List</Link>
         <button onClick={() => props.handleDeleteList(listId)}>Delete List</button>
+        <button onClick={handleAddItem}>Add Item</button>
+      </section>
+      <section>
+        <h3>Items:</h3>
+        {list.items && list.items.length > 0 ? (
+          <ul>
+            {list.items.map((item) => (
+              <li key={item._id}>
+                <Link to={`/items/${item._id}`}>{item.name}</Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No items added yet.</p>
+        )}
       </section>
     </main>
   );
