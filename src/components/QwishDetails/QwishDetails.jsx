@@ -7,7 +7,7 @@ import * as qwishService from "../../services/qwishService";
 import { UserContext } from "../../contexts/UserContext";
 
 const QwishDetails = (props) => {
-//   const { user } = useContext(UserContext);
+  //   const { user } = useContext(UserContext);
   const [list, setList] = useState(null);
   const { listId } = useParams();
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const QwishDetails = (props) => {
 
   if (!list) return <main>Loading...</main>;
 
-    const handleAddItemClick = () => {
+  const handleAddItem = () => {
     navigate(`/items/new/${listId}`);
   };
 
@@ -42,7 +42,21 @@ const QwishDetails = (props) => {
         </p>
         <Link to={`/lists/${listId}/edit`}>Edit List</Link>
         <button onClick={() => props.handleDeleteList(listId)}>Delete List</button>
-        <button onClick={handleAddItemClick}>Add Item</button>
+        <button onClick={handleAddItem}>Add Item</button>
+      </section>
+      <section>
+        <h3>Items:</h3>
+        {list.items && list.items.length > 0 ? (
+          <ul>
+            {list.items.map((item) => (
+              <li key={item._id}>
+                <Link to={`/items/${item._id}`}>{item.name}</Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No items added yet.</p>
+        )}
       </section>
     </main>
   );
