@@ -1,11 +1,17 @@
-import { useParams, Link } from 'react-router';
+import { useNavigate, useParams, Link } from 'react-router';
 import { useState, useEffect } from 'react';
 import * as itemService from '../../services/itemService';
 import styles from "./ItemDetail.module.scss";
 
-const ItemDetail = ({handleDeleteItem}) => {
+const ItemDetail = ({handleDeleteItem, setSelectedItem}) => {
   const [item, setItem] = useState(null);
   const {itemId} = useParams();
+  const navigate = useNavigate();
+
+  const handleEditItem = (item) => {
+    setSelectedItem(item)
+    navigate(`/items/${item._id}/edit`)
+  }
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -26,11 +32,10 @@ const ItemDetail = ({handleDeleteItem}) => {
           {item.img && <img src={item.img} alt={item.name} />}
           <p>{item.description}</p>
           <p>Price: ${item.price}</p>
-          {item.weight !== null && <p>Weight: {item.weight} kg</p>}
           {item.quantity !== null && <p>Quantity: {item.quantity}</p>}
           <div>
-            <Link to={`/items/${itemId}/edit`}>Edit</Link>
-            <button onClick={handleDeleteItem}>Delete</button>
+            <button type='button' onClick={() => handleEditItem(item)}>Edit</button>
+            <button onClick={() => handleDeleteItem(itemId)}>Delete</button>
           </div>
         </header>
       </section>
