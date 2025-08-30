@@ -1,15 +1,52 @@
-@use '../../styles/variables.module.scss';
+@use "../../styles/variables.module.scss";
 
 /* ===== Elements ===== */
 /* ===== Classes ===== */
-.container
-{
+.container {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  padding: 21px 21px 28px 21px;
+  box-shadow: -1px 5px 19px -5px rgba(0, 0, 0, 0.25);
+  width: 300px;
 }
+
+.container form > div {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.container input {
+  border-radius: 6px;
+  height: 30px;
+  padding-top: 18px;
+  padding-left: 16px;
+  &:focus + label {
+    transform: scale(0.75) translateY(2px);
+  }
+}
+
+.container label {
+  font-size: var(--font-size-default);
+  transform: translateY(4px);
+  position: absolute;
+  top: 0px;
+  left: 16px;
+  transition: transform 0.3s ease, bottom 0.3s ease;
+  transform-origin: left;
+}
+
+.container button {
+  margin-bottom: 10px;
+  background: rgb(0, 100, 255);
+  color: white;
+  border-radius: 50px;
+}
+
 .container h1 {
-    text-align: center;
+  text-align: center;
 }
 /* ===== Ids ===== */
