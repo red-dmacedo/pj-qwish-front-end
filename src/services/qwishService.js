@@ -40,8 +40,9 @@ const show = async (listId) => {
     });
 
     const list = await listRes.json();
+    // console.log('items:', list.items);
 
-    const itemRes = await fetch(`${ITEMS_URL}/many`, {
+    /* const itemRes = await fetch(`${ITEMS_URL}/many`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -56,7 +57,7 @@ const show = async (listId) => {
       const xItem = items[idx];
       itm = { ...xItem, ...itm };
       list.items[idx] = itm;
-    };
+    }; */
 
     return list;
   } catch (err) {
