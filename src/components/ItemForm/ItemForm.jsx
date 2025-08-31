@@ -29,7 +29,8 @@ const ItemForm = ({ handleAddItem }) => {
       listId, 
     };
 
-    const success = await handleAddItem(itemData);
+    /*const success =*/
+    await handleAddItem(itemData);
 
     // if (success) {
     //   navigate(`/lists/${listId}`);
