@@ -120,7 +120,7 @@ const ItemForm = ({ handleAddItem }) => {
         <button onClick={showSuggestions}>Search</button>
         <div className="flex-container">
           {searchResults.map((item, idx) => (
-            <div key={idx} className="walmart_item">
+            <div key={idx} className={styles.walmart_item}>
               <div>
                 <h3>{item.title}</h3>
                 <h4>{item.price}</h4>
