@@ -30,9 +30,9 @@ const create = async(itemFormData)=> {
   };
 };
 
-const addListItem = async(item)=> {
+const addListItem = async(item, listId)=> {
   try{
-    const res = await fetch(LISTS_URL, {
+    const res = await fetch(`${LISTS_URL}/${listId}/newItem`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,

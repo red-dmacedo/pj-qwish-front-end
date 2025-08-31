@@ -2,6 +2,7 @@ import { Routes, Route, useNavigate } from "react-router";
 import { useContext, useState, useEffect } from "react";
 
 import NavBar from "./components/NavBar/NavBar";
+import Footer from './components/Footer/Footer';
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import SignInForm from "./components/SignInForm/SignInForm";
 import Dashboard from './components/Dashboard/Dashboard';
@@ -41,8 +42,10 @@ const App = () => {
     const newItem = await itemService.create(itemData);
     if (newItem) {
       setItems((items) => [newItem, ...items]);
-      // await itemService.addListItem(newItem);
+      await itemService.addListItem(newItem, itemData.listId);
       navigate(`/lists/${itemData.listId}`);
+    } else {
+      throw new Error('Failed to add item');
     }
   }
 
@@ -143,6 +146,7 @@ const App = () => {
             )}
           </Routes>
         </div>
+          <Footer />
       </>
     </main>
   );

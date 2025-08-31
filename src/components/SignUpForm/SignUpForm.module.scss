@@ -1,15 +1,30 @@
-@use '../../styles/variables.module.scss';
+@use "../../styles/variables.module.scss";
 
 /* ===== Elements ===== */
 /* ===== Classes ===== */
-.container
-{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+
+.container {
+  display: flex;
+  height: calc(100vh - 120px);
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  gap: 170px;
+  flex-wrap: wrap;
+  & > * {
+    position: relative;
+    transform: none;
+    left: -50px;
+    top: 0px;
+    width: 400px;
+  }
 }
-.container h1 {
-    text-align: center;
+
+.container img {
+  margin-right: 100px;
+  border-radius: 10px;
+  width: 797px;
+  height: 809px;
 }
+
 /* ===== Ids ===== */

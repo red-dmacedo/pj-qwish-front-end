@@ -48,8 +48,8 @@ const QwishDetails = (props) => {
         <h3>Items:</h3>
         {list.items && list.items.length > 0 ? (
           <ul>
-            {list.items.map((item) => (
-              <li key={item._id}>
+            {list.items.map((item, idx) => (
+              <li key={idx}>
                 <Link to={`/items/${item._id}`}>{item.name}</Link>
               </li>
             ))}

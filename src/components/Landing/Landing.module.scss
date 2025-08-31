@@ -1,10 +1,40 @@
-@use '../../styles/variables.module.scss';
-@use '../../Main.module.scss';
+@use "../../styles/variables.module.scss";
+@use "../../Main.module.scss";
 
 /* ===== Elements ===== */
+img {
+  width: 100%;
+}
 /* ===== Classes ===== */
 .container {
-    place-items: center;
+  place-items: center;
+}
+
+.why {
+  background-color: rgb(246, 243, 238);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.whyContainer {
+  width: 100%;
+  justify-content: center;
+  max-width: 600px;
+  place-items: center;
+  padding: 2rem 0;
+  display: grid;
+  grid-template-columns: 1fr 20px 1fr;
+}
+.whyGrid {
+  background-color: white;
+  width: 300px;
+  padding: 0.2rem 1rem;
+  margin: 1rem;
+  border-radius: 15px;
+  box-shadow: -1px 5px 19px -5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: -1px 5px 19px -5px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: -1px 5px 19px -5px rgba(0, 0, 0, 0.25);
 }
 
 /* ===== Ids ===== */

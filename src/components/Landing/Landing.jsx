@@ -1,36 +1,108 @@
 import styles from "./Landing.module.scss";
 
+import Gift from '../../assets/images/gift.jpg';
+
 const Landing = () => {
   return (
     <main className={styles.container}>
-      <h1 className={styles.dynapuff}>Qwish</h1>
+      {/* Qwish intro */}
+      <h1 className={styles.dynapuffH1}>Qwish</h1>
       <h2>Making gift-giving easy, fun, and stress-free.</h2>
+      <img src={Gift} alt="gifts" />
 
-      <h2 className={styles.dynapuff}>Why use it?</h2>
-      <p><b>No more awkward gifts</b><br />
-      Share exactly what you want. No more guessing needed!</p>
+      {/* Why use it? Section */}
+      <h2 className={styles.dynapuffH1}>Why use it?</h2>
 
-      <p><b>Save time</b><br />
-      Friends and family will know exactly what to buy.</p>
+      <div className={styles.why}>
+        <div className={styles.whyContainer}>
+          <div className={styles.container}>
+            <h1 className={styles.dynapuffH1}>1.</h1>
+            <div className={styles.whyGrid}>
+              <p>
+                <b>No more awkward gifts</b>
+                <br />
+                Share exactly what you want. Everyone gives with confidence.
+                Skip guessing and fake liking a gift.
+              </p>
+            </div>
+          </div>
 
-      <p><b>Collaborate on lists</b>
-      <br />Add items together for weddings, holidays, or birthdays.</p>
+          <div></div>
 
-      <p><b>No more returns</b><br />
-      Get gifts you'll actually keep and love.</p>
-      <p><b>Better for the environment</b><br />
-      Reduce waste from unwanted gifts.</p>
+          <div className={styles.container}>
+            <h1 className={styles.dynapuffH1}>2.</h1>
+            <div className={styles.whyGrid}>
+              <p>
+                <b>Stay organized</b>
+                <br />
+                Qwish keeps all your lists in one spot! No need for notes,
+                screenshots, or random links.
+              </p>
+            </div>
+          </div>
 
-      <h2 className={styles.dynapuff}>How it Works</h2>
+          <div className={styles.container}>
+            <h1 className={styles.dynapuffH1}>3.</h1>
+            <div className={styles.whyGrid}>
+              <p>
+                <b>Save time</b>
+                <br />
+                Friends and family will know exactly what to buy instead of
+                shopping for hours.
+              </p>
+            </div>
+          </div>
+
+          <div></div>
+
+          <div className={styles.container}>
+            <h1 className={styles.dynapuffH1}>4.</h1>
+            <div className={styles.whyGrid}>
+              <p>
+                <b>Collaborate on lists</b>
+                <br />
+                Add items together for weddings, holidays, or birthdays.
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.container}>
+            <h1 className={styles.dynapuffH1}>5.</h1>
+            <div className={styles.whyGrid}>
+              <p>
+                <b>No more returns</b>
+                <br />
+                Get gifts you'll actually keep and love.
+              </p>
+            </div>
+          </div>
+
+          <div></div>
+
+          <div className={styles.container}>
+            <h1 className={styles.dynapuffH1}>6.</h1>
+            <div className={styles.whyGrid}>
+              <p>
+                <b>Better for the environment</b>
+                <br />
+                Reduce waste from unwanted gifts.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 className={styles.dynapuffH1}>How it Works</h2>
       <p>(3 step visual with screenshots)</p>
-      <p>1. Create your wishlist <br />
-      2. Add items from anywhere <br />
-      3. Share with friends and family to purchase.</p>
+      <ol>
+        <li>Create your wishlist</li>
+        <li>Add items from anywhere</li>
+        <li>Share with friends and family to purchase</li>
+      </ol>
 
       <h2 className={styles.dynapuff}>Subscribe to our Newsletter</h2>
       <form action="">
-        <input type="email" 
-        value="Your email"/>
+        <input type="email" placeholder="Your email" />
         <button>Subscribe</button>
       </form>
     </main>
