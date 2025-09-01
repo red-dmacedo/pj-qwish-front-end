@@ -1,5 +1,26 @@
-@use '../../styles/variables.module.scss';
+@use "../../styles/variables.module.scss";
 
 /* ===== Elements ===== */
 /* ===== Classes ===== */
+.container {
+  display: flex;
+  justify-content: center;
+  img{
+    max-height: 50vh;
+    object-fit: contain;
+  }
+}
+
+.container * {
+  text-align: center;
+}
+
+.container > * {
+  width: 100%;
+  max-width: 800px;
+}
+
+.container a {
+  color: rgb(0, 120, 255);
+}
 /* ===== Ids ===== */

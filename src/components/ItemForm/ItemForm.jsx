@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router"; 
+import { useNavigate, useParams } from "react-router";
 import { search as walmartSearch } from "../../services/walmartService";
 import styles from "./ItemForm.module.scss";
 
@@ -11,7 +11,8 @@ const ItemForm = ({ handleAddItem }) => {
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [search, setSearch] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState(null);
+  const [loading, setLoading] = useState(false);
   const { listId } = useParams();
 
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const ItemForm = ({ handleAddItem }) => {
       description,
       price: price ? Number(price) : null,
       quantity: quantity ? Number(quantity) : null,
-      listId, 
+      listId,
     };
 
     /*const success =*/
@@ -40,7 +41,11 @@ const ItemForm = ({ handleAddItem }) => {
   };
 
   const showSuggestions = () => {
-    walmartSearch(search).then((e) => setSearchResults(e.organic_results));
+    setLoading(true);
+    walmartSearch(search).then((e) => {
+      setLoading(false);
+      setSearchResults(e.organic_results);
+    });
   };
 
   const handleSelect = (item) => {
@@ -50,12 +55,15 @@ const ItemForm = ({ handleAddItem }) => {
     setDescription(item.link);
     setPrice(item.extracted_price);
     setQuantity(1);
-    setSearch('');
+    setSearch("");
     setSearchResults([]);
   };
 
   return (
-    <section className={styles.container} style={{ display: "flex", gap: "90px" }}>
+    <section
+      className={styles.container}
+      style={{ display: "flex", gap: "90px" }}
+    >
       <form onSubmit={handleSubmit}>
         <div>
           <label>Product Id: </label>
@@ -119,23 +127,30 @@ const ItemForm = ({ handleAddItem }) => {
           placeholder="Search product on Walmart"
         />
         <button onClick={showSuggestions}>Search</button>
-        <div className="flex-container">
-          {searchResults.map((item, idx) => (
-            <div key={idx} className="walmart_item">
-              <div>
-                <h3>{item.title}</h3>
-                <h4>{item.price}</h4>
+        <div className={styles.flex_container}>
+          {Array.isArray(searchResults) ? (
+            searchResults.map((item, idx) => (
+              <div key={idx} className={styles.walmart_item}>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>Rating: {item.rating}</p>
+                  <h4>{item.price}</h4>
+                </div>
+                <div>
+                  <img src={item.thumbnail} alt={item.title} />
+                  <a href={item.link} target="_blank" rel="noopener noreferrer">
+                    Walmart Link
+                  </a>
+                  <br />
+                  <button onClick={() => handleSelect(item)}>Select</button>
+                </div>
               </div>
-              <div>
-                <img src={item.thumbnail} alt={item.title} />
-                <a href={item.link} target="_blank" rel="noopener noreferrer">
-                  Walmart Link
-                </a>
-                <br />
-                <button onClick={() => handleSelect(item)}>Select</button>
-              </div>
-            </div>
-          ))}
+            ))
+          ) : loading ? (
+            <img src="/loading.svg" />
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
     </section>
