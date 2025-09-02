@@ -14,7 +14,7 @@ const Landing = () => {
       <img src={Gift} alt="gifts" />
 
       {/* Why use it? Section */}
-      <h2 className={styles.dynapuffH1}>Why use it?</h2>
+      <h2 className={styles.dynapuffH1}>Why use Qwish?</h2>
 
       <div className={styles.why}>
         <div className={styles.whyContainer}>
@@ -108,11 +108,14 @@ const Landing = () => {
         <li>Share with friends and family to purchase!</li>
       </ol>
 
-      <h2 className={styles.dynapuff}>Subscribe to our Newsletter</h2>
+{/* Subscribe to Newsletter section */}
+<div className={styles.subNewsletter}>
+      <h2 className={styles.dynapuffH1}>Subscribe to our Newsletter</h2>
       <form action="">
         <input type="email" placeholder="Your email" />
         <button>Subscribe</button>
       </form>
+</div>
     </main>
   );
 };
