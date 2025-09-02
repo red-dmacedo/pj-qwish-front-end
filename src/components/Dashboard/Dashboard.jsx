@@ -52,7 +52,7 @@ const Dashboard = (props) => {
             <h4>{list.name}</h4>
             <div className={styles.listLine}>
               <p>
-                {list.items.length} {list.length === 1 ? "item" : "items"}
+                {list.items.length} {list.items.length === 1 ? "item" : "items"}
               </p>
               <Link className={styles.linkToBtn} to={`/lists/${list._id}`}>
                 View List
