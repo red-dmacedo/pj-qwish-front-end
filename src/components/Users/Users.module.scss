@@ -1,4 +1,4 @@
-@use '../../styles/variables.module.scss';
+@use "../../styles/variables.module.scss";
 
 /* ===== Elements ===== */
 /* ===== Classes ===== */
@@ -10,14 +10,17 @@
   flex-direction: column;
   // place-self: center;
   // margin-left: 100px;
-  background-color: rgb(225,225,225);
+  background-color: rgb(225, 225, 225);
   gap: 10px;
   button {
     background-color: variables.$body-background-color;
     border: 1px solid black;
-    &:hover{
+    &:hover {
       background-color: variables.$body-background-color-hover;
     }
   }
 }
-/* ===== Ids ===== */
+
+.container spline-viewer {
+  height: calc(100vh - 281px);
+}

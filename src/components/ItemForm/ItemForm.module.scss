@@ -1,5 +1,4 @@
-// @use '../../styles/variables.module.scss';
-@use '../QwishForm/QwishForm.module.scss';
+@use "../../styles/variables.module.scss";
 
 /* ===== Elements ===== */
 
@@ -14,7 +13,7 @@ form {
 }
 
 /* ===== Classes ===== */
-.flex-container {
+.flex_container {
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
@@ -31,6 +30,13 @@ form {
   img {
     width: 100%;
   }
+  h3 {
+    word-break: break-all;
+  }
+}
+
+.container a {
+  color: rgb(0, 120, 255);
 }
 
 .container {

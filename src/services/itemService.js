@@ -15,6 +15,7 @@ const index = async () => {
 
 const create = async(itemFormData)=> {
   try{
+    // console.log('create:', itemFormData);
     const res = await fetch(BASE_URL, {
       method: 'POST',
       headers: {
@@ -32,7 +33,9 @@ const create = async(itemFormData)=> {
 
 const addListItem = async(item, listId)=> {
   try{
-    const res = await fetch(`${LISTS_URL}/${listId}/newItem`, {
+    // check if item has properties (avoid adding empty objects)
+    if(!Object.keys(item).length) throw new Error('Cannot add empty item to list');
+    const res = await fetch(`${LISTS_URL}/${listId}/items/new`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -73,9 +76,9 @@ const update = async (itemId, itemFormData) => {
   };
 };
 
-const remove = async (itemId) => {
+const remove = async (itemId, listId) => {
   try {
-    const res = await fetch(`${BASE_URL}/${itemId}`, {
+    const res = await fetch(`${LISTS_URL}/${listId}/${itemId}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     });
