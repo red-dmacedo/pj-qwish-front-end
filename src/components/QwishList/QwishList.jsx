@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import styles from "./QwishList.module.scss";
 
 const QwishList = (props) => {
+
   return (
     <>
     <div className={styles.container}>

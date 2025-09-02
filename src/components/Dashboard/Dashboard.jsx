@@ -8,11 +8,25 @@ const Dashboard = () => {
 
   return (
     <main className={styles.container}>
-      <h2 className={styles.dynapuff}>Welcome, {user.firstName}!</h2>
+      <h2 className={styles.dynapuffH1}>Welcome, {user.firstName}!</h2>
 
-      <Link to={`/lists/new`} className={styles.linkToBtn}>Create a New List</Link>
+      <Link to={`/lists/new`} className={`${styles.container} ${styles.linkToBtn}`}>Create a New List</Link>
 
-      <h2 >My Qwishlists</h2>
+<div className={styles.listGrid}>
+<article>
+ <div className={styles.container}>
+      <div class={styles.listGridItem}>-- Lists</div>
+ </div>
+</article>
+<article>
+ <div className={styles.container}>
+      <div class={styles.listGridItem}>-- Items</div>
+ </div>
+</article>
+</div>
+
+
+      <h2 className={styles.dynapuffH1}>My Qwishlists</h2>
 
     </main>
   );
