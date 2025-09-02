@@ -1,8 +1,8 @@
-@use '../../styles/variables.module.scss';
+@use "../../styles/variables.module.scss";
 
 /* ===== Elements ===== */
 /* ===== Classes ===== */
-.flex-container {
+.flex_container {
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
@@ -19,5 +19,12 @@
   img {
     width: 100%;
   }
+  h3 {
+    word-break: break-all;
+  }
+}
+
+.container a {
+  color: rgb(0, 120, 255);
 }
 /* ===== Ids ===== */
