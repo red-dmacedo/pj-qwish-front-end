@@ -50,7 +50,7 @@ const Users = (props) => {
 
   return (
     <div className={styles.container}>
-      <h1>Find Friends</h1>
+      <h1 className={styles.dynapuffH1}>Find Friends</h1>
       <form onSubmit={handleSubmit} className={styles.friendSearchForm}>
         <input
           type="text"
