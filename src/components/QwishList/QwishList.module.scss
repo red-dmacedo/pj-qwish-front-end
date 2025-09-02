@@ -28,6 +28,10 @@
   column-gap: 14px;
   row-gap: 25px;
   margin: 0 auto;
+  .list_item {
+    /* remove the bulleted list-style */
+    list-style: none;
+  }
 }
 
 /* ===== Ids ===== */

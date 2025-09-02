@@ -12,7 +12,7 @@ const Dashboard = () => {
 
       <Link to={`/lists/new`} className={styles.linkToBtn}>Create a New List</Link>
 
-      <h2 className={styles.dynapuff}>My Qwishlists</h2>
+      <h2 >My Qwishlists</h2>
 
     </main>
   );
