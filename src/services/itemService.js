@@ -15,7 +15,6 @@ const index = async () => { // get all items in the database
 
 const create = async(itemFormData)=> { // create a new item in the database (not tracked by a list)
   try{
-    console.log('create:', itemFormData);
     const res = await fetch(BASE_URL, {
       method: 'POST',
       headers: {
