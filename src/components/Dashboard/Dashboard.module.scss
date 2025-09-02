@@ -42,4 +42,36 @@
     font-size: 1.3em;
 }
 
+ul {
+  list-style-type: none;
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+  flex-direction: column;
+  width: 600px;
+  h4 {
+    place-self: flex-start;
+    padding: 0;
+    margin: 0;
+    box-sizing: none;
+  }
+  .listLine {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+  }
+}
+
+.listContent {
+  flex-direction: column;
+}
+
+
 /* ===== Ids ===== */

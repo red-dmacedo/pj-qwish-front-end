@@ -11,6 +11,10 @@ const Dashboard = (props) => {
     itemCount += i.items.length;
   }
 
+  let recentLists = lists.toSorted((a, b) => a.updatedAt > b.updatedAt);
+
+  recentLists = lists.slice(0, 3);
+
   return (
     <main className={styles.container}>
       <h2 className={styles.dynapuffH1}>Welcome, {user.firstName}!</h2>
@@ -25,19 +29,37 @@ const Dashboard = (props) => {
       <div className={styles.listGrid}>
         <article>
           <div className={styles.container}>
-            <div class={styles.listGridItem}>{lists.length} Lists</div>
+            <div className={styles.listGridItem}>{lists.length} Lists</div>
           </div>
         </article>
         <article>
           <div className={styles.container}>
-            <div class={styles.listGridItem}>{itemCount} Items</div>
+            <div className={styles.listGridItem}>{itemCount} Items</div>
           </div>
         </article>
       </div>
 
       <h2 className={styles.dynapuffH1}>My Qwishlists</h2>
 
-      
+      <ul>
+        {recentLists.map((list) => (
+          <li key={list._id} className={styles.listItem}>
+            <h4>{list.name}</h4>
+            <div className={styles.listLine}>
+            <p>{list.items.length} Items</p>
+            <Link className={styles.linkToBtn} to={`/lists/${list._id}`}>
+                View List
+              </Link>
+            </div>
+
+              {/* <p>
+                <b>{list.name}</b><br />{list.items.length} Items</p>
+              <Link className={styles.linkToBtn} to={`/lists/${list._id}`}>
+                View List
+              </Link> */}
+          </li>
+        ))}
+      </ul>
     </main>
   );
 };
