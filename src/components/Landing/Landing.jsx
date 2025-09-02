@@ -1,6 +1,9 @@
 import styles from "./Landing.module.scss";
 
 import Gift from '../../assets/images/gift.jpg';
+import qwishForm from '../../assets/images/qwishlistForm.png';
+import qwishlist from '../../assets/images/qwishlist.png';
+import findFriends from '../../assets/images/findFriendsPage.png';
 
 const Landing = () => {
   return (
@@ -11,7 +14,7 @@ const Landing = () => {
       <img src={Gift} alt="gifts" />
 
       {/* Why use it? Section */}
-      <h2 className={styles.dynapuffH1}>Why use it?</h2>
+      <h2 className={styles.dynapuffH1}>Why use Qwish?</h2>
 
       <div className={styles.why}>
         <div className={styles.whyContainer}>
@@ -92,19 +95,27 @@ const Landing = () => {
         </div>
       </div>
 
+    {/* How it Works Section */}
       <h2 className={styles.dynapuffH1}>How it Works</h2>
-      <p>(3 step visual with screenshots)</p>
+      <div className={styles.screenGrid}>
+        <img src={qwishForm} alt="screenshot of qwish form" />
+        <img src={qwishlist} alt="screenshot of qwishlist" />
+        <img src={findFriends} alt="screenshot of find friends page" />
+      </div>
       <ol>
-        <li>Create your wishlist</li>
+        <li>Create a wishlist</li>
         <li>Add items from anywhere</li>
-        <li>Share with friends and family to purchase</li>
+        <li>Share with friends and family to purchase!</li>
       </ol>
 
-      <h2 className={styles.dynapuff}>Subscribe to our Newsletter</h2>
+{/* Subscribe to Newsletter section */}
+<div className={styles.subNewsletter}>
+      <h2 className={styles.dynapuffH1}>Subscribe to our Newsletter</h2>
       <form action="">
         <input type="email" placeholder="Your email" />
         <button>Subscribe</button>
       </form>
+</div>
     </main>
   );
 };

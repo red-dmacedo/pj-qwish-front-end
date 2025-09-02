@@ -12,27 +12,40 @@ nav {
   align-items: center;
   background: white;
   border-bottom: 1px solid rgb(200, 200, 200);
+  background-color: rgb(201, 210, 253);
 
   ul {
     margin: 0;
     width: 100%;
+    height: 100%;
     display: flex;
     list-style: none;
     align-items: center;
     justify-content: flex-end;
-  }
-
-  li {
     margin-right: 20px;
-    text-align: right;
+    li {
+      text-align: right;
+      height: 100%;
+      display: flex;
+      margin: 5px;
+      box-sizing: border-box;
+      // place-items: center;
+      a {
+        color: black;
+        height: 100%;
+        place-content: center;
+        box-sizing: border-box;
+        padding: 10px;
+    
+        &:hover {
+          transform: 5px, 5px;
+          color: variables.$hyperlink-color;
+          // border: 1px solid black;
+        }
+    }
   }
 
-  a {
-    color: black;
 
-    &:hover {
-      color: variables.$hyperlink-color;
-    }
   }
 }
 
