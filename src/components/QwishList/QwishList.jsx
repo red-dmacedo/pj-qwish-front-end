@@ -13,7 +13,7 @@ const QwishList = (props) => {
             <p>{list.author.username}</p>
           </header>
           <p><b>{list.name}</b></p>
-          <p>-- Items</p>
+          <p>{list.items.length} Items</p>
           <p>
           List Close Date:<br />{" "}
           {new Date(list.closeDate).toLocaleDateString("en-US", {
