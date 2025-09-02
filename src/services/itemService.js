@@ -1,7 +1,7 @@
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/items`;
 const LISTS_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/lists`;
 
-const index = async () => {
+const index = async () => { // get all items in the database
   try {
     const res = await fetch(BASE_URL, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
@@ -13,7 +13,7 @@ const index = async () => {
   };
 };
 
-const create = async(itemFormData)=> {
+const create = async(itemFormData)=> { // create a new item in the database (not tracked by a list)
   try{
     console.log('create:', itemFormData);
     const res = await fetch(BASE_URL, {
@@ -31,7 +31,7 @@ const create = async(itemFormData)=> {
   };
 };
 
-const addListItem = async(item, listId)=> {
+const addListItem = async(item, listId)=> { // add an item to a list
   try{
     // check if item has properties (avoid adding empty objects)
     if(!Object.keys(item).length) throw new Error('Cannot add empty item to list');
@@ -50,7 +50,7 @@ const addListItem = async(item, listId)=> {
   };
 };
 
-const show = async (itemId) => {
+const show = async (itemId) => { // get a specific item's details
   try {
     const res = await fetch(`${BASE_URL}/${itemId}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
@@ -62,7 +62,7 @@ const show = async (itemId) => {
   };
 };
 
-const update = async (itemId, itemFormData) => {
+const update = async (itemId, itemFormData) => { // update an item's details (affects all lists the item is a part of)
   try {
     const res = await fetch(`${BASE_URL}/${itemId}`, {
       method: 'PUT',
@@ -76,7 +76,7 @@ const update = async (itemId, itemFormData) => {
   };
 };
 
-const remove = async (itemId, listId) => {
+const remove = async (itemId, listId) => { // remove an item from a list (automatically deletes the item from the database if the item is not found on any other list)
   try {
     const res = await fetch(`${LISTS_URL}/${listId}/${itemId}`, {
       method: 'DELETE',
