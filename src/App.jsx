@@ -107,7 +107,7 @@ const App = () => {
           <Routes>
             <Route
               path="/"
-              element={user ? <Dashboard /> : <Landing />}
+              element={user ? <Dashboard lists={lists}/> : <Landing />}
             />
             {user ? (
               <>
