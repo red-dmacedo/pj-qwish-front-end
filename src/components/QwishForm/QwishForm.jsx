@@ -45,7 +45,7 @@ const QwishForm = (props) => {
 
   return (
     <main className={styles.container}>
-      <h2 className={styles.dynapuff}>{listId ? "Edit List" : "Add a New Qwishlist"}</h2>
+      <h2 className={styles.dynapuffH1}>{listId ? "Edit List" : "Add a New Qwishlist"}</h2>
       <form className={styles.form} onSubmit={handleSubmit}>
       <label htmlFor="">Event Name</label>
         <input
