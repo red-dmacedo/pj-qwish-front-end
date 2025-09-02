@@ -6,7 +6,7 @@ const QwishList = (props) => {
     <>
       <div className={styles.container}>
         <h2 className={styles.dynapuffH1}>Qwishlists</h2>
-        <div className={`${styles.container} ${styles.listGrid}`}>
+        <ul className={`${styles.container} ${styles.listGrid}`}>
           {props.lists.map((list) => (
             <li key={list._id} className={styles.list_item}>
             {/* <Link key={list._id} to={`/lists/${list._id}`}> */}
@@ -30,7 +30,7 @@ const QwishList = (props) => {
             {/* </Link> */ }
             </li>
           ))}
-        </div>
+        </ul>
       </div>
     </>
   );
