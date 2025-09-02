@@ -36,9 +36,6 @@ const ItemDetail = ({ handleDeleteItem, setSelectedItem }) => {
         <p>Price: ${item.price}</p>
         {item.quantity !== null && <p>Quantity: {item.quantity}</p>}
         <div>
-          <button type="button" onClick={() => handleEditItem(item)}>
-            Edit
-          </button>
           <button onClick={() => handleDeleteItem(itemId, listId)}>
             Delete
           </button>
