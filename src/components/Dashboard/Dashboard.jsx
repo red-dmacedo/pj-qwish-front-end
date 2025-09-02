@@ -51,12 +51,6 @@ const Dashboard = (props) => {
                 View List
               </Link>
             </div>
-
-              {/* <p>
-                <b>{list.name}</b><br />{list.items.length} Items</p>
-              <Link className={styles.linkToBtn} to={`/lists/${list._id}`}>
-                View List
-              </Link> */}
           </li>
         ))}
       </ul>
