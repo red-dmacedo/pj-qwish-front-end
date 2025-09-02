@@ -2,7 +2,7 @@ const BACKEND_URL = import.meta.env.VITE_BACK_END_SERVER_URL;
 const LISTS_URL = `${BACKEND_URL}/lists`;
 const ITEMS_URL = `${BACKEND_URL}/items`;
 
-const index = async () => {
+const index = async () => { // get all lists authored by the logged-in user
   try {
     const res = await fetch(LISTS_URL, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
@@ -14,7 +14,7 @@ const index = async () => {
   };
 };
 
-const create = async (listFormData) => {
+const create = async (listFormData) => { // create a new list
   try {
     const res = await fetch(LISTS_URL, {
       method: 'POST',
@@ -31,7 +31,7 @@ const create = async (listFormData) => {
   };
 };
 
-const show = async (listId) => {
+const show = async (listId) => { // get a list
   try {
     const listRes = await fetch(`${LISTS_URL}/${listId}`, {
       headers: {
@@ -40,24 +40,6 @@ const show = async (listId) => {
     });
 
     const list = await listRes.json();
-    // console.log('items:', list.items);
-
-    /* const itemRes = await fetch(`${ITEMS_URL}/many`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ itemIds: list.items.map(el => el._id) }),
-    });
-
-    const items = await itemRes.json();
-
-    for (let [idx, itm] of list.items.entries()) {
-      const xItem = items[idx];
-      itm = { ...xItem, ...itm };
-      list.items[idx] = itm;
-    }; */
 
     return list;
   } catch (err) {
@@ -66,7 +48,7 @@ const show = async (listId) => {
   };
 };
 
-const update = async (listId, listFormData) => {
+const update = async (listId, listFormData) => { // update a list
   try {
     const res = await fetch(`${LISTS_URL}/${listId}`, {
       method: 'PUT',
@@ -83,7 +65,7 @@ const update = async (listId, listFormData) => {
   };
 };
 
-const remove = async (listId) => {
+const remove = async (listId) => { // delete a list
   try {
     const res = await fetch(`${LISTS_URL}/${listId}`, {
       method: 'DELETE',
