@@ -46,7 +46,7 @@ img {
   display: grid;
   place-items: center;
   grid-template-columns: repeat(3, 1fr);
-
+  padding-bottom: 30px;
   img {
     width: 80%;
     box-shadow: -1px 5px 19px -5px rgba(0, 0, 0, 0.25);
@@ -54,6 +54,13 @@ img {
     -webkit-box-shadow: -1px 5px 19px -5px rgba(0, 0, 0, 0.25);
     border-radius: 15px;
     padding: 10px;
+  }
+}
+
+.subNewsletter {
+  padding-bottom: 80px;
+  form {
+    margin: 0 auto;
   }
 }
 
