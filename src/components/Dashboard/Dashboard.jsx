@@ -37,6 +37,11 @@ const Dashboard = (props) => {
             <div className={styles.listGridItem}>{itemCount} Items</div>
           </div>
         </article>
+        <article>
+          <div className={styles.container}>
+            <div className={styles.listGridItem}>0 Purchased</div>
+          </div>
+        </article>
       </div>
 
       <h2 className={styles.dynapuffH1}>My Qwishlists</h2>
@@ -46,8 +51,10 @@ const Dashboard = (props) => {
           <li key={list._id} className={styles.listItem}>
             <h4>{list.name}</h4>
             <div className={styles.listLine}>
-            <p>{list.items.length} Items</p>
-            <Link className={styles.linkToBtn} to={`/lists/${list._id}`}>
+              <p>
+                {list.items.length} {list.length === 1 ? "item" : "items"}
+              </p>
+              <Link className={styles.linkToBtn} to={`/lists/${list._id}`}>
                 View List
               </Link>
             </div>

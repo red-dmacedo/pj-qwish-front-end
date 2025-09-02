@@ -13,8 +13,8 @@
 }
 
 .container article {
-  width: 200px;
-  height: 100px;
+  width: 160px;
+  height: 50px;
   padding: 14px 21px;
   border-radius: 13px;
   border: 1px solid var(--border);
@@ -26,12 +26,12 @@
 
 .listGrid {
   width: 100%;
-  max-width: 530px;
+  max-width: 500px;
   display: grid;
   align-items: center;
   justify-content: center;
-  padding: 21px;
-  grid-template-columns: repeat(2, 1fr);
+  padding: 35px 8px 8px 8px;
+  grid-template-columns: repeat(3, 1fr);
   column-gap: 14px;
   row-gap: 25px;
   margin: 0 auto;
@@ -41,13 +41,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px;
+    height: 50px;
     font-weight: bold;
     font-size: 1.3em;
 }
 
 ul {
   list-style-type: none;
+  padding: 0;
 }
 
 .listItem {
