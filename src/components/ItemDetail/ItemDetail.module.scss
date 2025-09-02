@@ -6,8 +6,10 @@
   display: flex;
   justify-content: center;
   img{
-    max-height: 50vh;
+    max-height: 45vh;
     object-fit: contain;
+    object-position: center;
+    height: 100%;
   }
 }
 
