@@ -14,6 +14,7 @@ const ItemForm = ({ handleAddItem }) => {
   const [searchResults, setSearchResults] = useState(null);
   const [loading, setLoading] = useState(false);
   const { listId } = useParams();
+  const [itemSelected, setItemSelected] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,6 +50,17 @@ const ItemForm = ({ handleAddItem }) => {
     setQuantity(1);
     setSearch("");
     setSearchResults([]);
+    setItemSelected(true);
+  }
+
+  const handleCancel = () => {
+    setProductId("");
+    setName("");
+    setImg("");
+    setDescription("");
+    setPrice("");
+    setQuantity(1);
+    setItemSelected(false); // Reset item selected state
   };
 
   return (
@@ -56,69 +68,72 @@ const ItemForm = ({ handleAddItem }) => {
       className={styles.container}
       style={{ display: "flex", gap: "90px" }}
     >
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.input}>
-          <label className={styles.label}>Product Id: </label>
-          <input
-            type="text"
-            value={productId}
-            onChange={(e) => setProductId(e.target.value)}
-            required
-          />
-        </div>
-        <div className={styles.input}>
-          <label className={styles.label}>Name: </label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-        <div className={styles.input}>
-          <label className={styles.label}>Image URL: </label>
-          <input
-            type="text"
-            value={img}
-            onChange={(e) => setImg(e.target.value)}
-          />
-        </div>
-        <div className={styles.input}>
-          <label className={styles.label}>Description: </label>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
-        <div className={styles.input}>
-          <label className={styles.label}>Price: </label>
-          <input
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            required
-          />
-        </div>
-        <div className={styles.input}>
-          <label className={styles.label}>Quantity: </label>
-          <input
-            type="number"
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
-          />
-        </div>
-        <button type="submit">Add Item</button>
-      </form>
+      {itemSelected && (
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles.input}>
+            <label className={styles.label}>Product Id: </label>
+            <input
+              type="text"
+              value={productId}
+              onChange={(e) => setProductId(e.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.input}>
+            <label className={styles.label}>Name: </label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.input}>
+            <label className={styles.label}>Image URL: </label>
+            <input
+              type="text"
+              value={img}
+              onChange={(e) => setImg(e.target.value)}
+            />
+          </div>
+          <div className={styles.input}>
+            <label className={styles.label}>Description: </label>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <div className={styles.input}>
+            <label className={styles.label}>Price: </label>
+            <input
+              type="number"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.input}>
+            <label className={styles.label}>Quantity: </label>
+            <input
+              type="number"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+            />
+          </div>
+          <button type="submit">Add Item</button>
+          <button type="button" onClick={handleCancel}>Cancel</button>
+        </form>
+      )}
 
       {/* Search for Walmart items */}
-      <div>
+      <div className={styles.search_form}>
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           type="search"
           placeholder="Search product on Walmart"
         />
-        <button onClick={showSuggestions}>Search</button>
+        <button className={styles.search_Btn} onClick={showSuggestions}>Search</button>
         <div className={styles.flex_container}>
           {Array.isArray(searchResults) ? (
             searchResults.map((item, idx) => (
