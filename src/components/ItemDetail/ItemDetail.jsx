@@ -1,18 +1,12 @@
-import { useNavigate, useParams, Link } from "react-router";
+import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import * as itemService from "../../services/itemService";
 import styles from "../ItemForm/ItemForm.module.scss";
 import stylesItem from "./ItemDetail.module.scss";
 
-const ItemDetail = ({ handleDeleteItem, setSelectedItem }) => {
+const ItemDetail = ({ handleDeleteItem }) => {
   const [item, setItem] = useState(null);
   const { itemId, listId } = useParams();
-  const navigate = useNavigate();
-
-  const handleEditItem = (item) => {
-    setSelectedItem(item);
-    navigate(`/items/${item._id}/edit`);
-  };
 
   useEffect(() => {
     const fetchItem = async () => {
