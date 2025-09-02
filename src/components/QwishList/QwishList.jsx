@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import styles from "./QwishList.module.scss";
 
 const QwishList = (props) => {
+
   return (
     <>
       <div className={styles.container}>
@@ -9,7 +10,6 @@ const QwishList = (props) => {
         <div className={`${styles.container} ${styles.listGrid}`}>
           {props.lists.map((list) => (
             <li key={list._id} className={styles.list_item}>
-            {/* <Link key={list._id} to={`/lists/${list._id}`}> */}
             <article key={list._id}>
               <header>
                 <p>{list.author.username}</p>
@@ -27,7 +27,6 @@ const QwishList = (props) => {
               </p>
               <Link className={styles.linkToBtn} to={`/lists/${list._id}`}>View List</Link>
             </article>
-            {/* </Link> */ }
             </li>
           ))}
         </div>

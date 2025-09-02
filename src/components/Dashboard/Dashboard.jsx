@@ -1,19 +1,43 @@
-import { useContext } from 'react';
-import { Link } from 'react-router';
-import { UserContext } from '../../contexts/UserContext';
+import { useContext } from "react";
+import { Link } from "react-router";
+import { UserContext } from "../../contexts/UserContext";
 import styles from "./Dashboard.module.scss";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
+  const { lists } = props;
   const { user } = useContext(UserContext);
+  let itemCount = 0;
+  for (let i of lists) {
+    itemCount += i.items.length;
+  }
 
   return (
     <main className={styles.container}>
-      <h2 className={styles.dynapuff}>Welcome, {user.firstName}!</h2>
+      <h2 className={styles.dynapuffH1}>Welcome, {user.firstName}!</h2>
 
-      <Link to={`/lists/new`} className={styles.linkToBtn}>Create a New List</Link>
+      <Link
+        to={`/lists/new`}
+        className={`${styles.container} ${styles.linkToBtn}`}
+      >
+        Create a New List
+      </Link>
 
-      <h2 className={styles.dynapuff}>My Qwishlists</h2>
+      <div className={styles.listGrid}>
+        <article>
+          <div className={styles.container}>
+            <div class={styles.listGridItem}>{lists.length} Lists</div>
+          </div>
+        </article>
+        <article>
+          <div className={styles.container}>
+            <div class={styles.listGridItem}>{itemCount} Items</div>
+          </div>
+        </article>
+      </div>
 
+      <h2 className={styles.dynapuffH1}>My Qwishlists</h2>
+
+      
     </main>
   );
 };
