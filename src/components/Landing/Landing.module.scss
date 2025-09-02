@@ -37,4 +37,18 @@ img {
   -webkit-box-shadow: -1px 5px 19px -5px rgba(0, 0, 0, 0.25);
 }
 
+.screenGrid {
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  img {
+    width: 80%;
+     box-shadow: -1px 5px 19px -5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: -1px 5px 19px -5px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: -1px 5px 19px -5px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    padding: 10px;
+  }
+}
+
 /* ===== Ids ===== */
