@@ -39,4 +39,8 @@ Using the Walmart API, you can browse and add items directly from Walmart to you
 
 ## Next Steps
 
-(fill out later)
+* Purchased function: show which items have been purchased and show a visual marker
+
+* Add friends: add friends and be able to access their wishlists to purchase their items
+
+* Add comments and messages with gift purchases
