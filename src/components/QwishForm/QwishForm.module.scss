@@ -3,22 +3,22 @@
 
 /* ===== Elements ===== */
 .form {
-    width: 400px;
-    display: flex;
-    max-width: 500px;
-    flex-direction: column;
-    background-color: white;
-    padding: 32px 45px;
-    box-shadow: -1px 5px 19px -5px rgba(0, 0, 0, 0.25);
+  width: 400px;
+  display: flex;
+  max-width: 500px;
+  flex-direction: column;
+  background-color: white;
+  padding: 21px 21px 28px 21px;
+  box-shadow: -1px 5px 19px -5px rgba(0, 0, 0, 0.25);
 }
 
 /* ===== Classes ===== */
 .container {
-    place-items: center;
+  place-items: center;
 }
 
 .formLjine {
-    padding: 2rem 1rem;
+  padding: 2rem 1rem;
 }
 
 /* ===== Ids ===== */
