@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import { search as walmartSearch } from "../../services/walmartService";
 import styles from "./ItemForm.module.scss";
 
@@ -14,8 +14,6 @@ const ItemForm = ({ handleAddItem }) => {
   const [searchResults, setSearchResults] = useState(null);
   const [loading, setLoading] = useState(false);
   const { listId } = useParams();
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,12 +30,6 @@ const ItemForm = ({ handleAddItem }) => {
 
     /*const success =*/
     await handleAddItem(itemData);
-
-    // if (success) {
-    //   navigate(`/lists/${listId}`);
-    // } else {
-    //   console.error("Failed to add item");
-    // }
   };
 
   const showSuggestions = () => {
@@ -64,9 +56,9 @@ const ItemForm = ({ handleAddItem }) => {
       className={styles.container}
       style={{ display: "flex", gap: "90px" }}
     >
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Product Id: </label>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.input}>
+          <label className={styles.label}>Product Id: </label>
           <input
             type="text"
             value={productId}
@@ -74,8 +66,8 @@ const ItemForm = ({ handleAddItem }) => {
             required
           />
         </div>
-        <div>
-          <label>Name: </label>
+        <div className={styles.input}>
+          <label className={styles.label}>Name: </label>
           <input
             type="text"
             value={name}
@@ -83,23 +75,23 @@ const ItemForm = ({ handleAddItem }) => {
             required
           />
         </div>
-        <div>
-          <label>Image URL: </label>
+        <div className={styles.input}>
+          <label className={styles.label}>Image URL: </label>
           <input
             type="text"
             value={img}
             onChange={(e) => setImg(e.target.value)}
           />
         </div>
-        <div>
-          <label>Description: </label>
+        <div className={styles.input}>
+          <label className={styles.label}>Description: </label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <div>
-          <label>Price: </label>
+        <div className={styles.input}>
+          <label className={styles.label}>Price: </label>
           <input
             type="number"
             value={price}
@@ -107,8 +99,8 @@ const ItemForm = ({ handleAddItem }) => {
             required
           />
         </div>
-        <div>
-          <label>Quantity: </label>
+        <div className={styles.input}>
+          <label className={styles.label}>Quantity: </label>
           <input
             type="number"
             value={quantity}
