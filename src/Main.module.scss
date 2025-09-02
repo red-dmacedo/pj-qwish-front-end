@@ -68,20 +68,24 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     cursor: pointer;
   }
+
   button {
     background-color: #f9f9f9;
   }
 }
 
 table {
+
   th,
   td {
     border: 1px solid white;
     width: 500px;
   }
+
   border-collapse: collapse;
 }
 
@@ -96,9 +100,11 @@ table {
   background-color: #f9f9f9;
   cursor: pointer;
   transition: border-color 0.25s;
-}
-.linkToBtn:hover {
-  border-color: variables.$hyperlink-color;
+
+  &:hover {
+    color: variables.$hyperlink-color;
+    border-color: variables.$hyperlink-color;
+  }
 }
 
 .linkToBtn:focus,
@@ -106,25 +112,26 @@ table {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.dynapuff{
+.dynapuff {
   font-family: "DynaPuff", system-ui;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   font-size: 1.5em;
   font-variation-settings:
-    "wdth" 100;
+    "wdth"100;
   color: rgb(49, 106, 158);
 }
 
-.dynapuffH1{
+.dynapuffH1 {
   font-family: "DynaPuff", system-ui;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   font-size: 2.2em;
   font-variation-settings:
-    "wdth" 100;
+    "wdth"100;
   color: rgb(49, 106, 158);
 }
+
 /* ===== Ids ===== */

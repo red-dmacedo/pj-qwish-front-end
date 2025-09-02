@@ -6,4 +6,15 @@
 .container {
     place-items: center;
 }
+
+.list {
+    list-style: none;
+    .list_link {
+        color: variables.$hyperlink-color;
+        &:hover {
+            color: variables.$hyperlink-color-hover;
+        }
+    }
+}
+
 /* ===== Ids ===== */

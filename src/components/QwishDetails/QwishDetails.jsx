@@ -47,10 +47,10 @@ const QwishDetails = (props) => {
       <section>
         <h3>Items:</h3>
         {list.items && list.items.length > 0 ? (
-          <ul>
+          <ul className={styles.list}>
             {list.items.map((item, idx) => (
-              <li key={idx}>
-                <Link to={`/lists/${listId}/${item._id}`}>x{item.quantity}: {item.name}</Link>
+              <li key={idx} className={styles.list_item}>
+                <Link to={`/lists/${listId}/${item._id}`} className={styles.list_link}>Qty: {item.quantity} | {item.name}</Link>
               </li>
             ))}
           </ul>
