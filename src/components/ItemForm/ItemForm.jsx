@@ -126,7 +126,7 @@ const ItemForm = ({ handleAddItem }) => {
       )}
 
       {/* Search for Walmart items */}
-      <div className={styles.search_form}>
+      <div>
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
